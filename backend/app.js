@@ -10,8 +10,8 @@ mongoose.connect("mongodb+srv://adam:JBZzMWxxJCxns62Q@cluster0-bs20k.mongodb.net
 .then(() => {
   console.log('Connected to database!');
 })
-.catch(() => {
-  console.log('Connection failed!');
+.catch((err) => {
+  console.log('Connection failed: ' + err);
 });
 
 
@@ -34,6 +34,8 @@ app.use((req, res, next) => {
 /**
  *  MongoDB Atlas user: adam
  *  password: JBZzMWxxJCxns62Q
+ * mongo "mongodb+srv://cluster0-bs20k.mongodb.net/test" --username adam
+ *
  */
 
 app.post("/api/posts", (req,res,next) => {
@@ -41,28 +43,32 @@ app.post("/api/posts", (req,res,next) => {
     title: req.body.title,
     content: req.body.content
   });
-  post.save();
-  res.status(201).json({
-    message: 'Post added successfully'
+  post.save().then(createdPost => {
+    res.status(201).json({
+      message: 'Post added successfully',
+      postId: createdPost._id
+    });
   });
 });
 
 app.get("/api/posts", (req,res,next) => {
-  const posts = [
-    {
-      id: "fadfadsff123",
-      title: "TEST TITLE1",
-      content: "Test content!!"
-    },
-    {
-      id: "faddfwfadsff123",
-      title: "TEST TITLE2",
-      content: "Test content2!!"
-    }
-  ];
-  res.status(200).json({
-    message: 'Posts fetched successfully!',
-    posts: posts
+  Post.find()
+  .then(documents => {
+    console.log(documents);
+    res.status(200).json({
+      message: 'Posts fetched successfully!',
+      posts: documents
+    });
+  });
+});
+
+app.delete("/api/posts/:id",(req,res,next) => {
+  console.log(req.params.id);
+  Post.deleteOne({_id: req.params.id}).then(result => {
+    console.log(result);
+    res.status(200).json({
+      message: 'Post deleted!'
+    });
   });
 });
 

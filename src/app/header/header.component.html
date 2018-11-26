@@ -1,1 +1,11 @@
-<mat-toolbar color ="primary"> My Tasks</mat-toolbar>
+<mat-toolbar color ="primary">
+  <span>
+    <a [routerLink]="['/']">My Tasks</a>
+  </span>
+  <span class="space-area"></span>
+  <ul>
+    <li>
+      <a mat-button [routerLink]="['/create']" routerLinkActive="mat-accent"> Add Post</a>
+    </li>
+  </ul>
+</mat-toolbar>
