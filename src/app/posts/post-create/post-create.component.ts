@@ -1,31 +1,79 @@
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import { Post } from './../post.model';
 import { PostsService } from '../posts.service';
- @Component({
+@Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',
   styleUrls: ['./post-create.component.css']
 })
-export class PostCreateComponent {
-    enteredTitle = '';
-    enteredContent = '';
+export class PostCreateComponent implements OnInit {
+  enteredTitle = '';
+  enteredContent = '';
+  post: Post;
 
-    constructor(public postsService: PostsService) {}
+  isLoading = false;
+  private mode = 'create';
+  private postId: string;
+  form: FormGroup;
 
+  constructor(public postsService: PostsService, public route: ActivatedRoute, private router: Router) { }
 
-    onAddPost(form: NgForm) {
-      if (form.valid) {
+  ngOnInit() {
+    this.form = new FormGroup({
+      'title': new FormControl(null, {
+        validators: [Validators.required]
+      }),
+      'content': new FormControl(null, {
+        validators: [Validators.required]
+      })
+    });
+    this.route.paramMap.subscribe(
+      (paramMap: ParamMap) => {
+        if (paramMap.has('postId')) {
+          this.mode = 'edit';
+          this.postId = paramMap.get('postId');
+          this.isLoading = true;
+          this.postsService.getPost(this.postId).subscribe(postData => {
+            this.isLoading = false;
+            this.post = {id: postData._id, title: postData.title, content: postData.content};
+            this.form.setValue({
+              'title': this.post.title,
+              'content': this.post.content
+            });
+          });
+        } else {
+          this.mode = 'create';
+          this.postId = null;
+        }
+      });
+
+  }
+
+  onSavePost() {
+    if (this.form.valid) {
+      this.isLoading = true;
+      if (this.mode === 'create') {
         const post: Post = {
           id: null,
-          title: form.value.title,
-          content: form.value.content
+          title: this.form.value.title,
+          content: this.form.value.content
         };
         this.postsService.addPost(post);
-        form.resetForm();
       } else {
-        return;
+        const post: Post = {
+          id: this.postId,
+          title: this.form.value.title,
+          content: this.form.value.content
+        };
+        this.postsService.updatePost(post);
       }
+      this.form.reset();
+      this.router.navigateByUrl('/');
+    } else { // invalid form
+      return;
     }
+  }
 }

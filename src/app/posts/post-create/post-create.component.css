@@ -1,10 +1,25 @@
 
 mat-form-field {
   width: 100%;
-  padding-bottom: 1rem;
 }
 
 textarea {
   width: 100%;
 
 }
+
+mat-spinner {
+  margin: auto;
+}
+
+input[type="file"] {
+  visibility: hidden;
+ }
+
+ .filebtn {
+   padding: 1vh 0;
+ }
+
+ button[type="submit"] {
+   margin: 1vh 0;
+ }
