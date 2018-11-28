@@ -13,9 +13,25 @@ mat-spinner {
 
 .post-image {
   width: 100%;
+
 }
 
 .post-image img {
   width: 100%;
   box-shadow: 1px 1px 5px rgba(59, 10, 116, 0.5);
 }
+
+
+mat-accordion {
+  padding: 1vh 1vw;
+  flex: 1 1 30%;
+}
+
+
+
+.organize {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+
