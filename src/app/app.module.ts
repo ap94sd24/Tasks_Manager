@@ -9,7 +9,8 @@ import {
   MatButtonModule,
   MatToolbarModule,
   MatExpansionModule,
-  MatProgressSpinnerModule} from '@angular/material';
+  MatProgressSpinnerModule,
+  MatGridListModule} from '@angular/material';
 
   import { PostCreateComponent } from './posts/post-create/post-create.component';
   import { HeaderComponent } from './header/header.component';
@@ -37,7 +38,8 @@ import { AppComponent } from './app.component';
     MatButtonModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
