@@ -10,11 +10,15 @@ import {
   MatToolbarModule,
   MatExpansionModule,
   MatProgressSpinnerModule,
-  MatGridListModule} from '@angular/material';
+  MatGridListModule,
+  MatPaginatorModule
+} from '@angular/material';
 
-  import { PostCreateComponent } from './posts/post-create/post-create.component';
-  import { HeaderComponent } from './header/header.component';
-  import { PostListComponent } from './posts/post-list/post-list.component';
+import { PostCreateComponent } from './posts/post-create/post-create.component';
+import { HeaderComponent } from './header/header.component';
+import { PostListComponent } from './posts/post-list/post-list.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +28,8 @@ import { AppComponent } from './app.component';
     PostListComponent,
     PostCreateComponent,
     HeaderComponent,
+    SigninComponent,
+    SignupComponent,
     AppComponent
   ],
   imports: [
@@ -33,6 +39,7 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatPaginatorModule,
     MatInputModule,
     MatCardModule,
     MatButtonModule,
