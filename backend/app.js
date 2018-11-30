@@ -37,6 +37,7 @@ app.use((req, res, next) => {
 /**
  *  MongoDB Atlas user: adam
  *  password: JBZzMWxxJCxns62Q
+ * 
  * mongo "mongodb+srv://cluster0-bs20k.mongodb.net/test" --username adam
  *
  */
