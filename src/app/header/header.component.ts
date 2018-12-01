@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { AuthService } from './../auth/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -6,8 +8,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 
-export class HeaderComponent implements OnInit {
-  constructor() { }
+export class HeaderComponent implements OnInit, OnDestroy {
+  isUserAuth = false;
+  private authSubs: Subscription;
 
-  ngOnInit() { }
+  constructor(private authService: AuthService) { }
+
+  ngOnInit() {
+    this.isUserAuth = this.authService.getIsAuth();
+    this.authSubs = this.authService.getAuthStatusListener()
+    .subscribe(isAuth => {
+        this.isUserAuth = isAuth;
+    });
+  }
+
+  onLogout() {
+    this.authService.logout();
+  }
+
+  ngOnDestroy() {
+    this.authSubs.unsubscribe();
+  }
 }

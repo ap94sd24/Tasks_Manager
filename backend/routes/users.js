@@ -23,8 +23,9 @@ router.post('/signup', (req,res,next) => {
         });
       })
       .catch(err => {
+        console.log(err);
         res.status(500).json({
-           error: err
+          message: 'Invalid authentication credentials! Email may already be used!'
         });
       })
   });
@@ -38,7 +39,7 @@ router.post('/login', (req,res,next) => {
         if (!user) {
           console.log('No user!');
           return res.status(401).json({
-            message: 'Auth failed!'
+            message: 'Invalid credentials!'
           });
         }
         fetchedUser = user;
@@ -48,7 +49,7 @@ router.post('/login', (req,res,next) => {
       if (!result) {
         console.log('No result!');
         return res.status(401).json({
-          message: 'Auth failed!'
+          message: 'No stored result for entered information!'
         });
       }
       const token = jwt.sign(
@@ -57,12 +58,14 @@ router.post('/login', (req,res,next) => {
            {expiresIn: '1h'}
       );
       res.status(200).json({
-        token: token
+        token: token,
+        expiresIn: 3600,
+        userId: fetchedUser._id
       });
     })
     .catch(err => {
       return res.status(401).json({
-        message: 'Auth failed!'
+        message: 'Invalid authentication credentials!'
       });
     });
 });

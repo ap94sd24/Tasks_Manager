@@ -2,3 +2,9 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.my-class .mat-dialog-container{
+  background: #FFBABA;
+  color:  #cc0000;
+  border: 2px solid #cc0000;
+}

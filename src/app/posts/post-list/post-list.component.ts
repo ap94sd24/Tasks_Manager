@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild,  OnDestroy } from '@angular/core';
-import { PostsService } from './../posts.service';
 import { Post } from '../post.model';
 import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material';
+
+import { PostsService } from './../posts.service';
+import { AuthService } from './../../auth/auth.service';
 
 @Component({
   selector: 'app-post-list',
@@ -13,23 +15,33 @@ import { PageEvent } from '@angular/material';
 export class PostListComponent implements OnInit, OnDestroy {
   isLoading = false;
   posts: Post[] = [];
-  private postsSub: Subscription;
   totalPosts = 0;
   postsPerPage = 2;
   currPage = 1;
   pgSizeOptions = [1, 2, 5, 10];
+  userId: string;
+  private postsSub: Subscription;
+  private authSub: Subscription;
+  userAuth = false;
   @ViewChild('paginator') paginator: any;
 
-  constructor(public postsService: PostsService) { }
+  constructor(public postsService: PostsService, private authService: AuthService) { }
 
   ngOnInit() {
     this.isLoading = true;
     this.postsService.getPosts(this.postsPerPage, 1);
+    this.userId = this.authService.getUserId();
     this.postsSub = this.postsService.getPostUpdateListener().subscribe(
       (postData: {posts: Post[], postCount: number} ) => {
         this.isLoading = false;
         this.posts = postData.posts;
         this.totalPosts = postData.postCount;
+      });
+     this.userAuth = this.authService.getIsAuth();
+     this.authSub = this.authService.getAuthStatusListener()
+      .subscribe(isAuth => {
+        this.userAuth = isAuth;
+        this.userId = this.authService.getUserId();
       });
   }
 
@@ -60,11 +72,14 @@ export class PostListComponent implements OnInit, OnDestroy {
           });
         }
         this.postsService.getPosts(this.postsPerPage, this.currPage);
+      }, () => {
+        this.isLoading = false;
       }
     );
   }
 
   ngOnDestroy(): void {
     this.postsSub.unsubscribe();
+    this.authSub.unsubscribe();
   }
 }

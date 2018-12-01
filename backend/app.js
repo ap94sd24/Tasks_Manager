@@ -25,7 +25,7 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
      );
   res.setHeader(
     "Access-Control-Allow-Methods",
@@ -37,8 +37,9 @@ app.use((req, res, next) => {
 /**
  *  MongoDB Atlas user: adam
  *  password: JBZzMWxxJCxns62Q
+ *
+ * mongo "mongodb+srv://cluster0-bs20k.mongodb.net/todo-app" --username adam
  * 
- * mongo "mongodb+srv://cluster0-bs20k.mongodb.net/test" --username adam
  *
  */
 
