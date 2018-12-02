@@ -1,8 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AuthData } from './auth-data.model';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+
+import { environment } from './../../environments/environment';
+import { AuthData } from './auth-data.model';
+
+const BACKEND_URL = environment.routes_url + '/users/';
 
 @Injectable({providedIn: 'root'})
 export class AuthService {
@@ -31,7 +35,7 @@ export class AuthService {
     }
 
     createUser(auth: AuthData) {
-      return this.http.post('http://localhost:3000/api/users/signup', auth).subscribe(() => {
+      return this.http.post(BACKEND_URL + '/signup', auth).subscribe(() => {
         this.router.navigateByUrl('/');
       }, error => {
         this.authStatusListener.next(false);
@@ -39,7 +43,7 @@ export class AuthService {
     }
 
     login(auth: AuthData) {
-      this.http.post<{token: string, expiresIn: number, userId: string}>('http://localhost:3000/api/users/login', auth)
+      this.http.post<{token: string, expiresIn: number, userId: string}>(BACKEND_URL + '/login', auth)
       .subscribe(response => {
           console.log(response);
           this.token = response.token;
@@ -86,7 +90,7 @@ export class AuthService {
       clearTimeout(this.timerToken);
       this.clearAuthStorage();
       this.userId = null;
-      this.router.navigate(['/']);
+      this.router.navigate(['/auth/signin']);
     }
 
     private setAuthTimer(duration: number) {
