@@ -8,7 +8,7 @@ const usersRoutes = require('./routes/users');
 
 const app = express();
 
-mongoose.connect("mongodb+srv://adam:JBZzMWxxJCxns62Q@cluster0-bs20k.mongodb.net/todo-app?retryWrites=true" , { useNewUrlParser: true })
+mongoose.connect("mongodb+srv://adam:" + process.env.MONGO_ATLAS_PW + "@cluster0-bs20k.mongodb.net/todo-app?retryWrites=true" , { useNewUrlParser: true })
 .then(() => {
   console.log('Connected to database!');
 })
@@ -39,7 +39,7 @@ app.use((req, res, next) => {
  *  password: JBZzMWxxJCxns62Q
  *
  * mongo "mongodb+srv://cluster0-bs20k.mongodb.net/todo-app" --username adam
- * 
+ *
  *
  */
 
