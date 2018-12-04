@@ -2,13 +2,10 @@
   "name": "todo-app",
   "version": "0.0.0",
   "private": true,
-  "scripts": {
-    "start": "node server.js"
-  },
   "dependencies": {
-    "bcrypt": "^3.0.2",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.3.13",
     "mongoose-unique-validator": "^2.0.2",
