@@ -87,7 +87,8 @@ exports.deletePost =  (req, res, next) => {
     if (post) {
       let url_arr = post.imagePath.split('/');
       let host = url_arr[2];
-      if (host === 'localhost:3000') {
+      console.log('req.get(host): ' + req.get('host'));
+      if (host === req.get('host')) {
         filename = url_arr[url_arr.length - 1];
         filepath = 'backend/images/' + filename;
         // delete image file
