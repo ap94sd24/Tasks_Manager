@@ -82,21 +82,18 @@ exports.deletePost =  (req, res, next) => {
   console.log(req.params.id);
   let filepath = '';
   let filename = '';
+  const image_path = process.env.ROOT ? process.env.ROOT + 'images/': 'images/';
 
   Post.findById(req.params.id).then(post => {
-    if (post) {
+    if (post && !!post.imagePath) {
       let url_arr = post.imagePath.split('/');
-      let host = url_arr[2];
-      console.log('req.get(host): ' + req.get('host'));
-      if (host === req.get('host')) {
-        filename = url_arr[url_arr.length - 1];
-        filepath = 'backend/images/' + filename;
+      filename = url_arr[url_arr.length - 1];
+      filepath =  image_path + filename;
         // delete image file
-        fs.unlink(filepath, (err) => {
-          if (err) throw err;
-          console.log('Image deleted for post!');
-        });
-      }
+      fs.unlink(filepath, (err) => {
+        if (err) throw err;
+         console.log('Image deleted for post!');
+       });
     }
     Post.deleteOne({
       _id: req.params.id,
