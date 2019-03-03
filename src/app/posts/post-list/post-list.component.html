@@ -18,21 +18,27 @@
         </mat-expansion-panel>
       </mat-accordion>
 </div>-->
-<mat-accordion multi="true"  *ngIf="posts.length > 0 && !isLoading"  >
-    <mat-expansion-panel  *ngFor="let post of posts; let i = index;" >
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 offset-md-2 col-md-8 offset-lg-3 col-lg-6">
+      <mat-accordion multi="true"  *ngIf="posts.length > 0 && !isLoading"  >
+          <mat-expansion-panel  *ngFor="let post of posts; let i = index;" >
 
-          <mat-expansion-panel-header >
-              {{ post.title }}
-            </mat-expansion-panel-header>
-            <div class="post-image" *ngIf="post.imagePath">
-              <img [src]="post.imagePath" [alt]="post.title">
-            </div>
-            <p>{{post.content}}</p>
-            <mat-action-row *ngIf="userAuth && userId === post.creator">
-                <button mat-button color="primary" [routerLink]="['/edit', post.id]" >EDIT</button>
-                <button mat-button color="warn" (click)="onDelete(post.id)">DELETE</button>
-              </mat-action-row>
-    </mat-expansion-panel>
-  </mat-accordion>
+                <mat-expansion-panel-header >
+                    {{ post.title }}
+                  </mat-expansion-panel-header>
+                  <div class="post-image" *ngIf="post.imagePath">
+                    <img [src]="post.imagePath" [alt]="post.title">
+                  </div>
+                  <p>{{post.content}}</p>
+                  <mat-action-row *ngIf="userAuth && userId === post.creator">
+                      <button mat-button color="primary" [routerLink]="['/edit', post.id]" >EDIT</button>
+                      <button mat-button color="warn" (click)="onDelete(post.id)">DELETE</button>
+                    </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+  </div>
+</div>
 <mat-paginator #paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pgSizeOptions" (page)="onChangePage($event)" *ngIf="posts.length > 0" ></mat-paginator>
 <p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading"> No posts added yet!</p>

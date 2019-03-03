@@ -21,7 +21,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" [routerLink]="['/']">
-    <img src="../../assets/images/favicon-orig3.png" class="logo" alt="Logo" height="50" width = "50"></a>
+    <img src="../../assets/images/favicon-orig3.png" class="logo" alt="Logo" height="50" width = "50">Caffeenreader</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -46,7 +46,7 @@
           <a mat-button  [routerLink]="['/create']" routerLinkActive="mat-accent"> ADD POST</a>
         </li>
         <li class="nav-item">
-            <button mat-button class="signoutBtn" (click)="onLogout()">SIGN OUT</button>
+            <a mat-button class="signoutBtn" (click)="onLogout()">SIGN OUT</a>
         </li>
       </ng-container>
       <ng-container *ngIf="!isUserAuth">

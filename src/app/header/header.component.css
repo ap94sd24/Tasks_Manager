@@ -17,7 +17,8 @@ ul {
   display: flex;
 } */
 
-a, .signoutBtn {
+
+a, .signoutBtn, .navbar-brand {
   text-decoration: none;
   color: white;
 }
@@ -93,6 +94,9 @@ button:focus {
   outline:none;
 }
 
+.nav-item {
+  padding: 0 1rem;
+}
 
 
 
