@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AngularMaterialModule } from './angular-material.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HeaderComponent } from './header/header.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
@@ -22,6 +23,7 @@ import { PostsModule } from './posts/posts.module';
   ],
   imports: [
     BrowserModule,
+    NgbModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

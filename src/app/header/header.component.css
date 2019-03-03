@@ -1,4 +1,4 @@
-ul {
+/*ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -15,4 +15,85 @@ a {
 
 ul {
   display: flex;
+} */
+
+a, .signoutBtn {
+  text-decoration: none;
+  color: white;
 }
+.navbar {
+  background-color: #00bcd4;
+}
+.nav-link {
+  cursor: pointer;
+}
+
+img:hover {
+  cursor:pointer;
+}
+
+.nav-item a{
+   padding: 0;
+   bottom: 0;
+   margin: 0;
+}
+
+.mat-icon {
+  font-size: 30px;
+}
+
+.item1 {
+  flex: 1 1 auto;
+}
+
+
+.mycustom .input-group-append {
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  bottom: 4px;
+  z-index:9;
+  }
+
+ /* .mycustom .input-group-prepend {
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    bottom: 4px;
+    z-index:9;
+  } */
+
+  .mycustom   {
+    margin-top: 1em;
+  }
+
+  .text-position {
+     padding-left: 1rem;
+  }
+
+.mycustom input[type=search] {
+  border: none;
+  width: 100%;
+  width: 40vw;
+  height: 3em;
+  padding-right: 123px;
+  border-radius: 20px;
+}
+
+.dropdown-toggle {
+  border-radius: 20px;
+}
+
+button {
+  outline:none;
+  border-radius: 20px;
+}
+
+button:focus {
+  outline:none;
+}
+
+
+
+
+

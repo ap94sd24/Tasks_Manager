@@ -15,7 +15,7 @@ export class AuthService {
     private timerToken: any;
     private userId: string;
     private authStatusListener = new Subject<boolean>();
-1
+
     constructor(private http: HttpClient, private router: Router) {}
 
     getToken() {
@@ -23,6 +23,7 @@ export class AuthService {
     }
 
     getIsAuth() {
+      console.log('Service: ' + this.isAuth);
       return this.isAuth;
     }
 

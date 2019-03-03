@@ -8,12 +8,16 @@ import {
   MatProgressSpinnerModule,
   MatGridListModule,
   MatPaginatorModule,
-  MatDialogModule
+  MatDialogModule,
+  MatMenuModule,
+  MatIconModule
 } from '@angular/material';
 
 @NgModule({
   exports: [
     MatPaginatorModule,
+    MatMenuModule,
+    MatIconModule,
     MatDialogModule,
     MatInputModule,
     MatCardModule,

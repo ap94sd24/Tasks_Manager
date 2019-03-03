@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Post } from './post.model';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { environment } from './../../environments/environment';
 
+import { environment } from './../../environments/environment';
+import { Post } from './post.model';
 
 const BACKEND_URL = environment.routes_url + '/posts/';
 

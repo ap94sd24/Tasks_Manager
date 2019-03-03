@@ -1,3 +1,40 @@
+@angular/animations
+MIT
+
+@angular/cdk
+MIT
+The MIT License
+
+Copyright (c) 2018 Google LLC.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+
+@angular/common
+MIT
+
+@angular/core
+MIT
+
+@angular/forms
+MIT
+
 @angular/material
 MIT
 The MIT License
@@ -23,14 +60,39 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+@angular/material/button
+
+@angular/material/card
+
+@angular/material/core
+
+@angular/material/dialog
+
+@angular/material/expansion
+
+@angular/material/form-field
+
+@angular/material/paginator
+
+@angular/material/progress-spinner
+
+@angular/material/select
+
+@angular/material/toolbar
+
+@angular/material/tooltip
+
 @angular/platform-browser
 MIT
 
-zone.js
+@angular/router
 MIT
-The MIT License
 
-Copyright (c) 2016-2018 Google, Inc.
+hammerjs
+MIT
+The MIT License (MIT)
+
+Copyright (C) 2011-2014 by Jorik Tangelder (Eight Media)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -316,41 +378,11 @@ If the Work includes a "NOTICE" text file as part of its distribution, then any 
 END OF TERMS AND CONDITIONS
 
 
-@angular/common
-MIT
-
-hammerjs
-MIT
-The MIT License (MIT)
-
-Copyright (C) 2011-2014 by Jorik Tangelder (Eight Media)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-
-@angular/material/progress-spinner
-
-@angular/cdk
+zone.js
 MIT
 The MIT License
 
-Copyright (c) 2018 Google LLC.
+Copyright (c) 2016-2018 Google, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -369,39 +401,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-
-@angular/animations
-MIT
-
-@angular/material/button
-
-@angular/material/tooltip
-
-@angular/material/form-field
-
-@angular/material/card
-
-@angular/router
-MIT
-
-@angular/material/dialog
-
-@angular/material/expansion
-
-@angular/material/core
-
-@angular/material/select
-
-@angular/material/paginator
-
-@angular/material/toolbar
-
-@angular/core
-MIT
-
-@angular/compiler
-MIT
-
-@angular/forms
-MIT
