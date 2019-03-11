@@ -7,6 +7,7 @@ exports.createUser = (req,res,next) => {
   bcrypt.hash(req.body.password, 10)
   .then(hash => {
     const user = new User({
+      username: req.body.username,
       email: req.body.email,
       password: hash
     });
@@ -61,6 +62,22 @@ exports.userLogin = (req,res,next) => {
     .catch(err => {
       return res.status(401).json({
         message: 'Invalid authentication credentials!'
+      });
+    });
+}
+
+exports.getUsername = (req, res, next) => {
+  User.find({_id: req.params.id}, {_id:0, username: 1})
+    .then(documents => {
+      res.status(200).json({
+        message: 'Username fetched successfully!',
+        username: documents
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        message: 'Fetching username failed!'
       });
     });
 }

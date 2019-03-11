@@ -16,6 +16,10 @@ export class PostsService {
   constructor(private http: HttpClient) {
   }
 
+  getPostUpdateListener() {
+    return this.postsUpdated.asObservable();
+  }
+
   getPosts(postsPerPage: number, currPage: number) {
     const queryParams = `?pagesize=${postsPerPage}&page=${currPage}`;
      this.http.get<{ message: string, posts: any, maxPosts: number }>( BACKEND_URL + queryParams)
@@ -23,10 +27,14 @@ export class PostsService {
         return {
           posts: postData.posts.map(post => {
           return {
+            id: post._id,
+            date: post.date,
             title: post.title,
             content: post.content,
-            id: post._id,
             imagePath: post.imagePath,
+            community: post.community,
+            votes: post.votes,
+            link: post.link,
             creator: post.creator
           };
         }), maxPosts: postData.maxPosts
@@ -40,9 +48,6 @@ export class PostsService {
        });
   }
 
-  getPostUpdateListener() {
-    return this.postsUpdated.asObservable();
-  }
 
   addPost(post: Post) {
       let postData: Post | FormData;
@@ -95,9 +100,13 @@ export class PostsService {
   getPost(postId: string) {
     return this.http.get<{
       _id: string;
+      date: Date;
       title: string;
       content: string;
       imagePath: string;
+      community: string;
+      votes: number;
+      link: string;
       creator: string;
     }>(BACKEND_URL  + postId);
   }

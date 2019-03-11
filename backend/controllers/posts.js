@@ -10,9 +10,13 @@ exports.createPost = (req, res, next) => {
    imagePath = url + '/images/' + req.file.filename;
  }
  const post = new Post({
+   date: Date.now(),
    title: req.body.title,
    content: req.body.content,
    imagePath: imagePath,
+   community: null,
+   votes: 0,
+   link: null,
    creator: req.userData.userId
  });
  console.log('userId: ' + req.userData.userId);

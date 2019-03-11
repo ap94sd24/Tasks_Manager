@@ -7,7 +7,7 @@ const postSchema = mongoose.Schema({
   imagePath: {type: String, required: false},
   community: {type: String, required: false},
   votes: {type: Number, required: false},
-  links: {type: mongoose.Schema.Types.Array, required: false},
+  link: {type: String, required: false},
   creator: {type: mongoose.Schema.Types.ObjectId, ref: "User", required: true}
 });
 
