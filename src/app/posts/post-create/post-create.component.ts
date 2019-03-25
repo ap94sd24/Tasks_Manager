@@ -7,6 +7,7 @@ import { AuthService } from './../../auth/auth.service';
 import { Post } from './../post.model';
 import { PostsService } from '../posts.service';
 import { mimeType } from './mime-type.validator';
+import { UserInfos } from 'src/app/auth/models/userInfos.model';
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',
@@ -18,7 +19,10 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   post: Post;
   imagePreview = '';
 
+  userInfos: UserInfos;
   isLoading = false;
+  isAuth = false;
+  buyerId: string;
   private authSub: Subscription;
   private mode = 'create';
   private postId: string;
@@ -27,11 +31,27 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   constructor(public postsService: PostsService, private authService: AuthService, public route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+   this.buyerId =  this.authService.getUserId();
+   this.isAuth = this.authService.getIsAuth();
    this.authSub = this.authService.getAuthStatusListener().subscribe(
-      authStatus => {
+      (authStatus: boolean) => {
+        this.isAuth = authStatus;
         this.isLoading = false;
       }
     );
+    if (this.isAuth) {
+      this.authService.getUserInfos(this.buyerId)
+      .subscribe(
+        userData => {
+          this.userInfos = {
+            username: userData.username,
+            displayname: userData.displayname,
+            email: userData.email
+          };
+        }
+      );
+    }
+
     this.form = new FormGroup({
       'title': new FormControl(null, {
         validators: [Validators.required]
@@ -93,6 +113,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
       if (this.mode === 'create') {
         const post: Post = {
           id: null,
+          username: this.userInfos.username,
           title: this.form.value.title,
           content: this.form.value.content,
           imagePath: this.form.value.image

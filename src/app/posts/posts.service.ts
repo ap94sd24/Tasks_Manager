@@ -29,6 +29,7 @@ export class PostsService {
           return {
             id: post._id,
             date: post.date,
+            username: post.username,
             title: post.title,
             content: post.content,
             imagePath: post.imagePath,
@@ -48,28 +49,24 @@ export class PostsService {
        });
   }
 
-
   addPost(post: Post) {
       let postData: Post | FormData;
-      console.log('post.image: ' + post.imagePath);
-      console.log(typeof post.imagePath);
-      console.log(post.imagePath === null);
       if (typeof(post.imagePath) === 'object' && post.imagePath !== null) {
         postData = new FormData();
+        postData.append('username', post.username);
         postData.append('title', post.title);
         postData.append('content', post.content);
         postData.append('imagePath', post.imagePath, post.title);
       } else {
-        console.log('ENTER HERE');
         if (!!post) {
           postData = {
+            username: post.username,
             title: post.title,
             content: post.content,
             imagePath: post.imagePath
           };
         }
       }
-      console.log('post: ' + postData);
       this.http.post<{message: string, post: Post}>(BACKEND_URL, postData)
       .subscribe((responseData) => {
       });

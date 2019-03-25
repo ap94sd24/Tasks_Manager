@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/users');
 
 exports.createUser = (req,res,next) => {
+  let newUser;
   bcrypt.hash(req.body.password, 10)
   .then(hash => {
     const user = new User({
@@ -11,10 +12,19 @@ exports.createUser = (req,res,next) => {
       email: req.body.email,
       password: hash
     });
+    newUser = user;
     user.save()
       .then(result => {
+        const token = jwt.sign(
+          {email: newUser.email, userId: newUser._id},
+             process.env.JWT_KEY,
+             {expiresIn: '1h'}
+        );
         res.status(201).json({
           message: 'User created!',
+          token: token,
+          expiresIn: 3600,
+          userId: newUser._id,
           result: result
         });
       })
@@ -66,18 +76,21 @@ exports.userLogin = (req,res,next) => {
     });
 }
 
-exports.getUsername = (req, res, next) => {
-  User.find({_id: req.params.id}, {_id:0, username: 1})
-    .then(documents => {
-      res.status(200).json({
-        message: 'Username fetched successfully!',
-        username: documents
+exports.getUserInfos = (req, res, next) => {
+  User.findOne({
+    _id: req.params.id
+  }, {email: 1, displayname: 1, username: 1}).then(user => {
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).json({
+        message: 'User not found!'
       });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({
-        message: 'Fetching username failed!'
-      });
+    }
+  })
+  .catch(err => {
+    res.status(500).json({
+      message: 'Fetching user failed!'
     });
+  });
 }

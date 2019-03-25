@@ -3,6 +3,33 @@
   margin-top: 1rem;
 }
 
+mat-card:hover {
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.linkBtn:hover {
+  cursor: pointer;
+  color: #00bcd4;
+}
+
+.customBtn {
+  color: rgb(107, 107, 107);
+}
+
+img {
+  max-width: 100%;
+  max-height: 30vh;
+  object-fit: cover;
+}
+
+.customBtn:hover {
+  background-color: rgb(201, 201, 201);
+}
+
+.padding {
+  padding: 0;
+}
 .info-text {
   text-align: center;
 }
@@ -13,7 +40,26 @@ mat-spinner {
 
 .post-image {
   width: 100%;
+}
 
+.arrowSyle {
+  font-size:  32px;
+  color: gray;
+}
+
+.fixPosit {
+  padding-left: 14%;
+}
+
+.arrowSyle:hover {
+  font-size:  32px;
+  color: #00bcd4;
+  cursor: pointer;
+}
+.arrowSyle:active {
+  font-size:  36px;
+  color: #0099ad;
+  cursor: pointer;
 }
 
 .post-image img {
@@ -21,13 +67,14 @@ mat-spinner {
   box-shadow: 1px 1px 5px #00a8be;
 }
 
+.desktop-view {
+  padding: 1vh 1vw;
+}
 
 mat-accordion {
   padding: 1vh 1vw;
   flex: 1 1 30%;
 }
-
-
 
 .organize {
   display: flex;
@@ -38,4 +85,15 @@ mat-paginator {
   margin-top: 1rem;
 }
 
+@media (max-width: 991px) {
+  .desktop-view {
+    display: none;
+  }
+}
+
+@media (max-width: 575px) {
+  .votesView {
+    display: none;
+  }
+}
 

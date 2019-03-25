@@ -35,9 +35,28 @@ export class AuthService {
       return this.authStatusListener.asObservable();
     }
 
+    getUserInfos(id: string) {
+      return this.http.get<{
+        username: string,
+        displayname: string,
+        email: string
+      }>(BACKEND_URL + id);
+    }
+
     createUser(auth: AuthData) {
-      return this.http.post(BACKEND_URL + '/signup', auth).subscribe(() => {
-        this.router.navigateByUrl('/');
+      return this.http.post<{token: string, expiresIn: number, userId: string }>(BACKEND_URL + '/signup', auth).subscribe((response) => {
+        this.token = response.token;
+        if (this.token) {
+          const expirationDuration = response.expiresIn;
+          this.setAuthTimer(expirationDuration);
+          this.isAuth = true;
+          this.userId = response.userId;
+          this.authStatusListener.next(true);
+          const now = new Date();
+          const expirationDate = new Date(now.getTime() + expirationDuration * 1000);
+          this.saveAuthData(this.token, expirationDate, this.userId);
+          this.router.navigateByUrl('/');
+        }
       }, error => {
         this.authStatusListener.next(false);
       });
@@ -51,13 +70,11 @@ export class AuthService {
           if (this.token) {
             const expirationDuration = response.expiresIn;
             this.setAuthTimer(expirationDuration);
-         //   console.log(expirationDuration);
             this.isAuth = true;
             this.userId = response.userId;
             this.authStatusListener.next(true);
             const now = new Date();
             const expirationDate = new Date(now.getTime() + expirationDuration * 1000);
-           // console.log("expiration: " + expirationDate);
             this.saveAuthData(this.token, expirationDate, this.userId);
 
             this.router.navigate(['/']);

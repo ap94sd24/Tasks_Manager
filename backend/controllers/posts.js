@@ -11,6 +11,7 @@ exports.createPost = (req, res, next) => {
  }
  const post = new Post({
    date: Date.now(),
+   username: req.body.username,
    title: req.body.title,
    content: req.body.content,
    imagePath: imagePath,
@@ -19,7 +20,6 @@ exports.createPost = (req, res, next) => {
    link: null,
    creator: req.userData.userId
  });
- console.log('userId: ' + req.userData.userId);
  post.save().then(createdPost => {
    res.status(201).json({
      message: 'Post added successfully',
