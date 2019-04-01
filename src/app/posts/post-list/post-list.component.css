@@ -3,7 +3,11 @@
   margin-top: 1rem;
 }
 
-mat-card:hover {
+.postUser {
+  color: gray;
+}
+
+.post:hover {
   cursor: pointer;
   border: 1px solid black;
 }

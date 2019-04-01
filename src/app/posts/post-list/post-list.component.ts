@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild,  OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Post } from '../post.model';
 import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material';
@@ -18,6 +18,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   totalPosts = 0;
   postsPerPage = 2;
   currPage = 1;
+  datePosted: any;
   pgSizeOptions = [1, 2, 5, 10];
   userId: string;
   private postsSub: Subscription;
@@ -32,19 +33,19 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.postsService.getPosts(this.postsPerPage, 1);
     this.userId = this.authService.getUserId();
     this.postsSub = this.postsService.getPostUpdateListener().subscribe(
-      (postData: {posts: Post[], postCount: number} ) => {
+      (postData: { posts: Post[], postCount: number }) => {
         this.isLoading = false;
         this.posts = postData.posts;
-        console.log('post: ' + JSON.stringify(this.posts));
         this.totalPosts = postData.postCount;
       });
-     this.userAuth = this.authService.getIsAuth();
-     this.authSub = this.authService.getAuthStatusListener()
+    this.userAuth = this.authService.getIsAuth();
+    this.authSub = this.authService.getAuthStatusListener()
       .subscribe(isAuth => {
         this.userAuth = isAuth;
         this.userId = this.authService.getUserId();
       });
   }
+
 
   onChangePage(pg: PageEvent) {
     this.isLoading = true;

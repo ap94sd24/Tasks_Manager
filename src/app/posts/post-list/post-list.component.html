@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-12 col-lg-8">
-       <mat-card *ngFor="let post of posts; let i = index;">
+       <mat-card class="post" *ngFor="let post of posts; let i = index;">
          <div class="row">
            <div class="votesView padding col-12 col-md-1 col-lg-1 text-center">
               <mat-icon class="arrowSyle">arrow_drop_up</mat-icon> <br>
@@ -13,7 +13,9 @@
                <div class="row">
                  <div class="col-12">
                    <h5> c/common
-                     Posted by u/{{post?.username}} 0 hrs ago
+                    <span class="postUser"> Posted by u/{{post?.username}}</span> <app-date-posted
+                     [datePosted]="post?.date"
+                     ></app-date-posted>
                    </h5>
                    <span>{{post?.title}}</span>
                  </div>
