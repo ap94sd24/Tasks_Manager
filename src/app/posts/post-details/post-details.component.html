@@ -1,49 +1,70 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 col-md-12 col-lg-9">
-        <mat-card class="post"  >
+      <mat-card class="post">
+        <div class="row">
+          <div class="votesView padding col-12 col-md-1 col-lg-1 text-center">
+            <mat-icon class="arrowSyle">arrow_drop_up</mat-icon> <br>
+            <span class="fixPosit">0</span> <br>
+            <mat-icon class="arrowSyle">arrow_drop_down</mat-icon>
+          </div>
+          <div class="col-12 padding col-md-11 col-lg-11">
             <div class="row">
-              <div class="votesView padding col-12 col-md-1 col-lg-1 text-center">
-                 <mat-icon class="arrowSyle">arrow_drop_up</mat-icon> <br>
-                 <span class="fixPosit">0</span> <br>
-                 <mat-icon class="arrowSyle">arrow_drop_down</mat-icon>
+              <div class="col-12 mb-3">
+                <div> c/common
+                  <span class="postUser"> Posted by u/{{post?.username}}</span>
+                  <app-date-posted [datePosted]="post?.date"></app-date-posted>
+                </div>
               </div>
-              <div class="col-12 padding col-md-11 col-lg-11">
+              <div class="col-12">
+                <h4>{{post?.title}}</h4>
+              </div>
+              <div class="col-12 text-center">
+                <img class="img-fluid" [src]="post?.imagePath" alt="No image found!">
+              </div>
+              <div class="col-12 my-3">
+                <a mat-button class="customBtn">
+                  <mat-icon>mode_comment</mat-icon> 0 Comments
+                </a>
+              </div>
+              <div class="col-12">
+                <span>Comment as </span> <a class="userLink">{{post?.username}}</a>
+              </div>
+              <div class="col-12">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <mat-card class="commentbox">
                   <div class="row">
-                    <div class="col-12 mb-3">
-                      <div> c/common
-                       <span class="postUser"> Posted by u/{{post?.username}}</span>
-                       <app-date-posted
-                        [datePosted]="post?.date"
-                     ></app-date-posted>
-                      </div>
-                    </div>
                     <div class="col-12">
-                       <h4>{{post?.title}}</h4>
+                      <mat-form-field>
+                        <textarea matInput
+                        formControlName="comment"
+                        placeholder="Thoughts?"></textarea>
+                      </mat-form-field>
                     </div>
-                    <div class="col-12 text-center">
-                       <img class="img-fluid" [src]="post?.imagePath" alt="No image found!">
-                    </div>
-                    <div class="col-12">
-                      <a mat-button class="customBtn"> <mat-icon>mode_comment</mat-icon> 0 Comments</a>
+                    <div class="col-12 text-right">
+                      <button class="commentbtn" mat-raised-button color="primary" type="submit">COMMENT</button>
                     </div>
                   </div>
+                </mat-card>
+              </form>
               </div>
             </div>
-          </mat-card>
+          </div>
+        </div>
+      </mat-card>
     </div>
     <div class="col-lg-3 desktop-view">
-        <mat-card>
-          <div class="row">
-            <div class="col-12 text-center">
-              <a mat-button class="linkBtn"> Community</a>
-              <hr>
-            </div>
-            <div class="col-12 text-center">
-             <a>  --To be added-- </a>
-            </div>
+      <mat-card>
+        <div class="row">
+          <div class="col-12 text-center">
+            <a mat-button class="linkBtn"> Community</a>
+            <hr>
           </div>
-        </mat-card>
-     </div>
+          <div class="col-12 text-center">
+            <a> --To be added-- </a>
+          </div>
+        </div>
+      </mat-card>
+    </div>
   </div>
 </div>

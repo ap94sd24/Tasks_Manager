@@ -2,6 +2,24 @@
 .postUser {
   color: gray;
 }
+
+mat-form-field  {
+  width: 100%;
+}
+
+.commentbox {
+  margin-right: 10%;
+}
+
+.commentContainer {
+  border: 1px solid black;
+}
+
+.userLink {
+  color: blue;
+}
+
+
 .customBtn {
   color: rgb(107, 107, 107);
 }

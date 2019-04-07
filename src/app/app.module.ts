@@ -14,12 +14,14 @@ import { ErrorComponent } from './error/error.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PostsModule } from './posts/posts.module';
+import { CommentsComponent } from './posts/post-details/comments/comments.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     ErrorComponent,
-    AppComponent
+    AppComponent,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,

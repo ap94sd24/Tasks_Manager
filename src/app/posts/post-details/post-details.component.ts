@@ -1,3 +1,4 @@
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 
@@ -13,6 +14,8 @@ export class PostDetailsComponent implements OnInit {
 
   postId: string;
   post: Post;
+
+  form: FormGroup;
   constructor(public postService: PostsService, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -31,11 +34,20 @@ export class PostDetailsComponent implements OnInit {
             votes: postData.votes,
             creator: postData.creator
           };
-          console.log('post: ' + JSON.stringify(this.post));
         });
       }
     );
 
+    this.form = new FormGroup({
+      comment: new FormControl(null, {
+        validators: [Validators.required]
+      })
+    });
   }
 
+  onSubmit() {
+    if (this.form.invalid) {
+      return;
+    }
+  }
 }
