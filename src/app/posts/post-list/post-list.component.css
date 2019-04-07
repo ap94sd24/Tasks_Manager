@@ -99,5 +99,8 @@ mat-paginator {
   .votesView {
     display: none;
   }
+  .padding {
+    padding: 0 2%;
+  }
 }
 

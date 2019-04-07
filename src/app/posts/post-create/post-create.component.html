@@ -1,36 +1,44 @@
-<mat-card>
-  <mat-spinner *ngIf="isLoading"></mat-spinner>
-  <form [formGroup]="form"
-  (submit)="onSavePost()"  *ngIf="!isLoading">
-    <mat-form-field>
-      <input
-      matInput
-       type="text"
-       formControlName="title"
-       placeholder="Title"
-       >
-       <mat-error *ngIf="form.get('title').invalid"> Please enter a title! </mat-error>
-    </mat-form-field>
-    <div class="filebtn">
-      <button mat-stroked-button type="button" (click)="file.click()"> Pick Image</button>
-      <input type="file" #file (change)="onImagePicked($event)">
+<div class="container">
+  <div class="row">
+    <div class="col-12 text-center col-md-8 offset-md-2 text-md-center col-lg-6 offset-md-3 text-center">
+      <mat-card>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        <form [formGroup]="form"
+        (submit)="onSavePost()"  *ngIf="!isLoading">
+          <mat-form-field>
+            <input
+            matInput
+             type="text"
+             formControlName="title"
+             placeholder="Title"
+             >
+             <mat-error *ngIf="form.get('title').invalid"> Please enter a title! </mat-error>
+          </mat-form-field>
+          <div class="filebtn text-left">
+            <button mat-stroked-button type="button" (click)="file.click()"> Pick Image</button>
+            <input type="file" #file (change)="onImagePicked($event)">
+          </div>
+          <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
+            <img [src]="imagePreview" [alt]="form.value.title">
+          </div>
+          <mat-form-field>
+            <textarea
+             matInput
+              rows="2"
+              formControlName="content"
+              placeholder="Content"
+              ></textarea>
+              <mat-error *ngIf="form.get('content').invalid"> Please enter some content! </mat-error>
+          </mat-form-field>
+          <div class="text-right">
+            <button
+             mat-raised-button
+             color="primary"
+             type="submit"
+             >CREATE POST</button>
+          </div>
+        </form>
+      </mat-card>
     </div>
-    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
-      <img [src]="imagePreview" [alt]="form.value.title">
-    </div>
-    <mat-form-field>
-      <textarea
-       matInput
-        rows="2"
-        formControlName="content"
-        placeholder="Content"
-        ></textarea>
-        <mat-error *ngIf="form.get('content').invalid"> Please enter some content! </mat-error>
-    </mat-form-field>
-    <button
-     mat-raised-button
-     color="primary"
-     type="submit"
-     >Save post</button>
-  </form>
-</mat-card>
+  </div>
+</div>

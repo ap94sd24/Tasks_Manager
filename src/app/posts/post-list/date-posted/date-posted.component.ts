@@ -34,25 +34,25 @@ export class DatePostedComponent implements OnChanges {
       } else {
         this.postDate = yearsElapsed + ' years ago';
       }
-    } else if (weeksElapsed > 3) {
+    } else if (monthsElapsed > 0) {
       if (monthsElapsed < 2) {
         this.postDate = monthsElapsed + ' month ago';
       } else {
         this.postDate = monthsElapsed + ' months ago';
       }
-    } else if (daysElapsed > 6) {
+    } else if (weeksElapsed > 0) {
       if (weeksElapsed < 2) {
         this.postDate = weeksElapsed + ' week ago';
       } else {
         this.postDate = weeksElapsed + ' weeks ago';
       }
-    } else if (hourElapsed > 23) {
+    } else if (daysElapsed > 0) {
       if (daysElapsed < 2) {
         this.postDate = daysElapsed + ' day ago';
       } else {
         this.postDate = daysElapsed + ' days ago';
       }
-    } else if (minElapsed > 59) {
+    } else if (hourElapsed > 0) {
        if (hourElapsed < 2) {
          this.postDate = hourElapsed + ' hour ago';
        } else {

@@ -15,7 +15,7 @@ const app = express();
  */
 const imagePath = process.env.ROOT ? process.env.ROOT + "images": "images";
 
-mongoose.connect("mongodb://adam-pan:" + process.env.MONGO_ATLAS_PW+ "@backend-server-shard-00-00-rgblz.mongodb.net:27017,backend-server-shard-00-01-rgblz.mongodb.net:27017,backend-server-shard-00-02-rgblz.mongodb.net:27017/todo-app?ssl=true&replicaSet=Backend-server-shard-0&authSource=admin&retryWrites=true" , { useNewUrlParser: true })
+mongoose.connect("mongodb://adam-pan:" + process.env.MONGO_ATLAS_PW+ "@backend-server-shard-00-00-rgblz.mongodb.net:27017,backend-server-shard-00-01-rgblz.mongodb.net:27017,backend-server-shard-00-02-rgblz.mongodb.net:27017/backend-server?ssl=true&replicaSet=Backend-server-shard-0&authSource=admin&retryWrites=true" , { useNewUrlParser: true })
 .then(() => {
   console.log('Connected to database!');
 })

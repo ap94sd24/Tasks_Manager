@@ -2,14 +2,15 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-md-12 col-lg-8">
-       <mat-card class="post" *ngFor="let post of posts; let i = index;">
+      <ng-container *ngFor="let post of posts; let i = index;">
+       <mat-card class="post"  >
          <div class="row">
            <div class="votesView padding col-12 col-md-1 col-lg-1 text-center">
               <mat-icon class="arrowSyle">arrow_drop_up</mat-icon> <br>
               <span class="fixPosit">0</span> <br>
               <mat-icon class="arrowSyle">arrow_drop_down</mat-icon>
            </div>
-           <div class="col-12 padding col-md-11 col-lg-11">
+           <div class="col-12 padding col-md-11 col-lg-11"  [routerLink]="['c/' + 'community' + '/comments/' + post?.id + '/title']">
                <div class="row">
                  <div class="col-12">
                    <h5> c/common
@@ -31,6 +32,7 @@
            </div>
          </div>
        </mat-card>
+      </ng-container>
       <div class="col-12 text-right">
           <mat-paginator #paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pgSizeOptions" (page)="onChangePage($event)" *ngIf="posts.length > 0" ></mat-paginator>
           <p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading"> No posts added yet!</p>

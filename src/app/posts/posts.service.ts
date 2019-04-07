@@ -98,6 +98,7 @@ export class PostsService {
     return this.http.get<{
       _id: string;
       date: Date;
+      username: string;
       title: string;
       content: string;
       imagePath: string;

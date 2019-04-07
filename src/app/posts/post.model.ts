@@ -7,6 +7,6 @@ export interface Post {
   imagePath?: string;
   community?: string;
   votes?: number;
-  links?: string[];
+  link?: string;
   creator?: string;
 }
