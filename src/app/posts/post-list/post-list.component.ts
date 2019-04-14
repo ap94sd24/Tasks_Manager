@@ -26,10 +26,12 @@ export class PostListComponent implements OnInit, OnDestroy {
   userAuth = false;
   @ViewChild('paginator') paginator: any;
 
-  constructor(public postsService: PostsService, private authService: AuthService) { }
+  constructor(public postsService: PostsService,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.isLoading = true;
+
     this.postsService.getPosts(this.postsPerPage, 1);
     this.userId = this.authService.getUserId();
     this.postsSub = this.postsService.getPostUpdateListener().subscribe(

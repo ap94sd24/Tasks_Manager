@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row custom">
     <div class="col-12 col-md-12 col-lg-9">
       <mat-card class="post">
         <div class="row">
@@ -24,29 +24,31 @@
               </div>
               <div class="col-12 my-3">
                 <a mat-button class="customBtn">
-                  <mat-icon>mode_comment</mat-icon> 0 Comments
+                  <mat-icon>mode_comment</mat-icon>  {{commentsDisplay}}
                 </a>
               </div>
-              <div class="col-12">
-                <span>Comment as </span> <a class="userLink">{{post?.username}}</a>
-              </div>
-              <div class="col-12">
-                <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                  <mat-card class="commentbox">
-                    <div class="row">
-                      <div class="col-12">
-                        <mat-form-field>
-                          <textarea matInput formControlName="comment" placeholder="Thoughts?"></textarea>
-                        </mat-form-field>
+              <ng-container  *ngIf="isAuth">
+                <div class="col-12">
+                  <span>Comment as </span> <a class="userLink">{{post?.username}}</a>
+                </div>
+                <div class="col-12" >
+                  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <mat-card class="commentbox">
+                      <div class="row">
+                        <div class="col-12">
+                          <mat-form-field>
+                            <textarea matInput formControlName="comment" placeholder="Thoughts?"></textarea>
+                          </mat-form-field>
+                        </div>
+                        <div class="col-12 text-right">
+                          <button class="commentbtn" mat-raised-button color="primary" [disabled]="checkInvalid()"
+                            type="submit">COMMENT</button>
+                        </div>
                       </div>
-                      <div class="col-12 text-right">
-                        <button class="commentbtn" mat-raised-button color="primary" [disabled]="checkInvalid()"
-                          type="submit">COMMENT</button>
-                      </div>
-                    </div>
-                  </mat-card>
-                </form>
-              </div>
+                    </mat-card>
+                  </form>
+                </div>
+              </ng-container>
             </div>
           </div>
           <div class="col-12">

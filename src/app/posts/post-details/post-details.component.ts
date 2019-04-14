@@ -19,6 +19,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
 
   postId: string;
   post: Post;
+  commentsDisplay: string;
   comments: Comment[] = [];
   userInfo: UserInfos;
   isAuth = false;
@@ -63,6 +64,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
           .subscribe(
               (commentData: Comment[]) => {
                 this.comments = commentData;
+                this.setComments(this.comments.length);
               }
           );
         });
@@ -72,6 +74,14 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       comment: new FormControl(null)
     });
+  }
+
+  setComments(num: number) {
+    if (num > 1) {
+      this.commentsDisplay = num + ' Comments';
+    } else {
+      this.commentsDisplay = num + ' Comment';
+    }
   }
 
   getLoginUserDetails(login: boolean) {
@@ -109,6 +119,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     };
     // post to comment db
     this.commentsService.addComment(comment);
+    this.form.reset();
   }
 
   ngOnDestroy() {

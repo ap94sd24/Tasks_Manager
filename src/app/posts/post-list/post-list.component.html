@@ -24,7 +24,8 @@
                     <img class="img-fluid" [src]="post?.imagePath" alt="No image found!">
                  </div>
                  <div class="col-12">
-                   <a mat-button class="customBtn"> <mat-icon>mode_comment</mat-icon> Comments</a>
+                    <a mat-button class="customBtn"> <mat-icon>mode_comment</mat-icon> 0 Comment</a> 
+
                    <a *ngIf="userAuth && userId === post.creator" mat-button class="customBtn">  Edit</a>
                    <a *ngIf="userAuth && userId === post.creator" mat-button class="customBtn">  Delete</a>
                  </div>

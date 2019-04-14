@@ -68,7 +68,7 @@ mat-spinner {
 }
 
 .fixPosit {
-  padding-left: 13%;
+  padding-left: 10%;
 }
 
 .arrowSyle:hover {
@@ -107,6 +107,10 @@ mat-spinner {
 @media (max-width: 575px) {
   .votesView {
     display: none;
+  }
+
+  .commentbox {
+    margin-right: 0%;
   }
 }
 

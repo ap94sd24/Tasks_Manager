@@ -2,11 +2,9 @@
   color: darkblue;
 }
 
-
 .custom {
-  border-left: 2px solid gray;
-  height: 40px;
-  margin-left: 54%;
+  border-left: 2px solid lightgray;
+  height:  auto;
 }
 
 .ng-invalid:not(form)  {
@@ -73,7 +71,7 @@ mat-spinner {
 }
 
 .fixPosit {
-  padding-left: 14%;
+  padding-left: 10%;
 }
 
 .arrowSyle:hover {
@@ -112,6 +110,11 @@ mat-spinner {
 @media (max-width: 575px) {
   .votesView {
     display: none;
+  }
+
+  .custom {
+    border-left: 4px solid gray;
+    height:  auto;
   }
 }
 
