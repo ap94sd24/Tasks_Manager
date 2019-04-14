@@ -6,4 +6,6 @@ const CommentsController = require('../controllers/comments');
 
 router.post("", checkAuth, CommentsController.createComment);
 
+router.get("/:postId", CommentsController.getCommentsForPost);
+
 module.exports = router;

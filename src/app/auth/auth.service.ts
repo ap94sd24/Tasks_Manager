@@ -37,6 +37,7 @@ export class AuthService {
 
     getUserInfos(id: string) {
       return this.http.get<{
+        _id: string,
         username: string,
         displayname: string,
         email: string

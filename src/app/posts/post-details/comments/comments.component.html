@@ -1,3 +1,33 @@
-<p>
-  comments works!
-</p>
+<ng-container *ngFor="let comment of comments; let i = index;">
+  <div class="row">
+    <div class="votesView padding col-12 col-md-1 col-lg-1 text-center">
+      <mat-icon class="arrowSyle">arrow_drop_up</mat-icon> <br>
+      <span class="fixPosit">0</span> <br>
+      <mat-icon class="arrowSyle">arrow_drop_down</mat-icon>
+      <div class="row">
+        <div class="col-12">
+          <div class="container custom">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 padding col-md-11 col-lg-11">
+      <div class="row">
+        <div class="col-12 mb-3">
+          <div>
+            <span class="commentUser"> {{comment?.username}} </span>  <app-date-posted [datePosted]="comment?.date"></app-date-posted>
+          </div>
+        </div>
+        <div class="col-12">
+          <span>{{comment?.comment}}</span>
+        </div>
+        <div class="col-12 my-3">
+          <a mat-button class="customBtn">
+            <mat-icon>mode_comment</mat-icon> Reply
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

@@ -14,10 +14,45 @@ export class CommentsService {
 
   constructor(private http: HttpClient) {}
 
-  addComment(comment: Comment) {
-    this.http.post<{message: string, comment: Comment}>(BACKEND_URL, comment)
-    .subscribe((res) => {
-      console.log('res: ' + JSON.stringify(res));
+  getCommentsUpdatedListener() {
+    return this.commentsUpdated.asObservable();
+  }
+
+  addComment(newComment: Comment) {
+    this.http.post<{message: string, comment: Comment}>(BACKEND_URL, newComment)
+    .subscribe((res: any) => {
+      const commentRes: Comment = {
+        username: res.comment._doc.username,
+        comment: res.comment._doc.comment,
+        postId: res.comment._doc.postId,
+        creator: res.comment._doc.creator,
+        date: res.comment._doc.date
+      };
+      this.comments.push(commentRes);
+      this.commentsUpdated.next(this.comments);
+    });
+  }
+
+  getCommentsForPost(postId: string) {
+    this.http
+    .get<{ message: string; comments: any }>(BACKEND_URL + postId)
+    .pipe(
+      map(commentsData => {
+        return commentsData.comments.map(comments => {
+          return {
+            username: comments.username,
+            comment: comments.comment,
+            postId: comments.postId,
+            creator: comments.creator,
+            date: comments.date,
+            commentId: comments._id
+          };
+        });
+      })
+    )
+    .subscribe(transformedPostData => {
+      this.comments = transformedPostData;
+      this.commentsUpdated.next([...this.comments]);
     });
   }
 }

@@ -3,6 +3,14 @@
   color: gray;
 }
 
+.ng-invalid:not(form)  {
+  color: black;
+  -webkit-box-shadow: none;
+  -ms-box-shadow: none;
+  box-shadow:none;
+}
+
+
 mat-form-field  {
   width: 100%;
 }
@@ -60,7 +68,7 @@ mat-spinner {
 }
 
 .fixPosit {
-  padding-left: 14%;
+  padding-left: 13%;
 }
 
 .arrowSyle:hover {

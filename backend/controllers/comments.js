@@ -10,7 +10,7 @@ exports.createComment = (req, res, next) => {
   });
   comment.save()
   .then(newComment => {
-    req.status(201).json({
+    res.status(201).json({
       message: 'Comment added successfully',
       comment: {
         ...newComment,
@@ -19,8 +19,25 @@ exports.createComment = (req, res, next) => {
     });
   })
   .catch(err => {
+    console.log('err: ' + err);
     res.status(500).json({
       message: 'Creating a comment failed'
     });
   });
+}
+
+exports.getCommentsForPost = (req, res, next) => {
+  Comment.find({"postId": req.params.postId})
+    .then(documents => {
+      res.status(200).json({
+        message: 'Comments for post fetched successfully!',
+        comments: documents
+      });
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json({
+        message: 'Fetching commments failed!'
+      });
+    });
 }
