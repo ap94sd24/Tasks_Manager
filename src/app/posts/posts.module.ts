@@ -10,6 +10,7 @@ import { DatePostedComponent } from './post-list/date-posted/date-posted.compone
 import { PostDetailsComponent } from './post-details/post-details.component';
 import { CommentsComponent } from './post-details/comments/comments.component';
 import { PostListComponent } from './post-list/post-list.component';
+import { PostVotesComponent } from './post-votes/post-votes.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PostListComponent } from './post-list/post-list.component';
     DatePostedComponent,
     CommentsComponent,
     PostListComponent,
-    PostDetailsComponent
+    PostDetailsComponent,
+    PostVotesComponent
   ],
   imports: [
     CommonModule,

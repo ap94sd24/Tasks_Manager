@@ -77,9 +77,12 @@ export class PostsService {
     if (typeof(post.imagePath) === 'object') {
       postData = new FormData();
       postData.append('id', post.id);
+      postData.append('username', post.username);
       postData.append('title', post.title);
       postData.append('content', post.content);
       postData.append('imagePath', post.imagePath, post.title);
+      postData.append('community', post.community);
+      //postData.append('votes', post.votes);
     } else { // Not an image file
       postData = {
         id: post.id,

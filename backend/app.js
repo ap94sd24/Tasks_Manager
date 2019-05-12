@@ -10,10 +10,6 @@ const usersRoutes = require('./routes/users');
 const app = express();
 
 // dynamically set image path for local & production
-/**
- * mongodb://adam-pan:<PASSWORD>@backend-server-shard-00-00-rgblz.mongodb.net:27017,backend-server-shard-00-01-rgblz.mongodb.net:27017,backend-server-shard-00-02-rgblz.mongodb.net:27017/test?ssl=true&replicaSet=Backend-server-shard-0&authSource=admin&retryWrites=true
- * "mongodb+srv://adam:" + process.env.MONGO_ATLAS_PW + "@cluster0-bs20k.mongodb.net/todo-app?retryWrites=true"
- */
 const imagePath = process.env.ROOT ? process.env.ROOT + "images": "images";
 
 mongoose.connect("mongodb://adam-pan:" + process.env.MONGO_ATLAS_PW+ "@backend-server-shard-00-00-rgblz.mongodb.net:27017,backend-server-shard-00-01-rgblz.mongodb.net:27017,backend-server-shard-00-02-rgblz.mongodb.net:27017/backend-server?ssl=true&replicaSet=Backend-server-shard-0&authSource=admin&retryWrites=true" , { useNewUrlParser: true })

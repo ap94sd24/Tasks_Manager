@@ -1,0 +1,20 @@
+.arrowSyle {
+  font-size:  32px;
+  color: gray;
+}
+.arrowSyle:hover {
+  font-size:  32px;
+  color: #00bcd4;
+  cursor: pointer;
+}
+.arrowSyle:active {
+  font-size:  36px;
+  color: #0099ad;
+  cursor: pointer;
+}
+
+.fixPosit {
+  padding-left: 14%;
+}
+
+

@@ -6,9 +6,10 @@
        <mat-card class="post"  >
          <div class="row">
            <div class="votesView padding col-12 col-md-1 col-lg-1 text-center">
-              <mat-icon class="arrowSyle">arrow_drop_up</mat-icon> <br>
-              <span class="fixPosit">0</span> <br>
-              <mat-icon class="arrowSyle">arrow_drop_down</mat-icon>
+              <app-post-votes
+              [votes]="post?.votes"
+              [id]="post?.id"
+              ></app-post-votes>
            </div>
            <div class="col-12 padding col-md-11 col-lg-11"  [routerLink]="['c/' + 'community' + '/comments/' + post?.id + '/title']">
                <div class="row">
@@ -24,7 +25,7 @@
                     <img class="img-fluid" [src]="post?.imagePath" alt="No image found!">
                  </div>
                  <div class="col-12">
-                    <a mat-button class="customBtn"> <mat-icon>mode_comment</mat-icon> 0 Comment</a> 
+                    <a mat-button class="customBtn"> <mat-icon>mode_comment</mat-icon> 0 Comment</a>
 
                    <a *ngIf="userAuth && userId === post.creator" mat-button class="customBtn">  Edit</a>
                    <a *ngIf="userAuth && userId === post.creator" mat-button class="customBtn">  Delete</a>
