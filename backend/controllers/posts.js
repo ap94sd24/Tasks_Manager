@@ -123,16 +123,35 @@ exports.deletePost =  (req, res, next) => {
 }
 
 exports.editPost = (req, res, next) => {
+  let votes;
+  let origDate;
   let imagePath = req.body.imagePath;
   if (!!req.file) {
     const url = req.protocol + '://' + req.get('host');
     imagePath = url + '/images/' + req.file.filename;
   }
+
+  if (typeof(req.body.votes) === 'number') {
+     votes = req.body.votes;
+  } else {
+    votes = parseInt(req.body.votes);
+  }
+
+  if (typeof(req.body.date) === 'string') {
+    origDate = parseInt(req.body.date);
+  }
+
   const post = new Post({
     _id: req.body.id,
+    date: origDate,
+    username: req.body.username,
     title: req.body.title,
     content: req.body.content,
     imagePath: imagePath,
+    community: req.body.community,
+    votes: votes,
+    link: req.body.link,
+    updatedDate: Date.now(),
     creator: req.userData.userId
   });
   Post.updateOne({

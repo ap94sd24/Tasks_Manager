@@ -9,6 +9,7 @@ const postSchema = mongoose.Schema({
   community: {type: String, required: false},
   votes: {type: Number, required: false},
   link: {type: String, required: false},
+  updatedDate: {type: Date, required: false},
   creator: {type: mongoose.Schema.Types.ObjectId, ref: "User", required: true}
 });
 

@@ -50,12 +50,12 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
         .subscribe(postData => {
           this.post = {
             id: postData._id,
-            date: postData.date,
+            date: postData.date.toString(),
             username: postData.username,
             title: postData.title,
             content: postData.content,
             imagePath: postData.imagePath,
-            votes: postData.votes,
+            votes: postData.votes.toString(),
             creator: postData.creator
           };
 
@@ -85,7 +85,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
   }
 
   getLoginUserDetails(login: boolean) {
-    if(login) {
+    if (login) {
       this.authService.getUserInfos(this.userId).subscribe(
           userData => {
             this.userInfo = {

@@ -77,23 +77,31 @@ export class PostsService {
     if (typeof(post.imagePath) === 'object') {
       postData = new FormData();
       postData.append('id', post.id);
+      postData.append('date', post.date);
       postData.append('username', post.username);
       postData.append('title', post.title);
       postData.append('content', post.content);
       postData.append('imagePath', post.imagePath, post.title);
       postData.append('community', post.community);
-      //postData.append('votes', post.votes);
+      postData.append('votes', post.votes);
+      postData.append('link', post.link);
     } else { // Not an image file
       postData = {
         id: post.id,
+        date: post.date,
+        username: post.username,
         title: post.title,
         content: post.content,
         imagePath: post.imagePath,
-        creator: null
+        community: post.community,
+        votes: post.votes,
+        link: post.link
       };
     }
     this.http.put(BACKEND_URL  + post.id, postData)
     .subscribe(response => {
+      // async update on client
+      
     });
   }
 
