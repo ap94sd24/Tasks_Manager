@@ -84,6 +84,7 @@ export class PostsService {
       postData.append('imagePath', post.imagePath, post.title);
       postData.append('community', post.community);
       postData.append('votes', post.votes);
+      postData.append('commentsNumber', post.commentsNumber);
       postData.append('link', post.link);
     } else { // Not an image file
       postData = {
@@ -95,13 +96,14 @@ export class PostsService {
         imagePath: post.imagePath,
         community: post.community,
         votes: post.votes,
+        commentsNumber: post.commentsNumber,
         link: post.link
       };
     }
     this.http.put(BACKEND_URL  + post.id, postData)
     .subscribe(response => {
       // async update on client
-      
+
     });
   }
 

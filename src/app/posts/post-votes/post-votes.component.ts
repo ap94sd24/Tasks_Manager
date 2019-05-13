@@ -34,6 +34,8 @@ export class PostVotesComponent implements OnInit, OnDestroy {
       let votes = parseInt(this.post.votes, 10);
       votes++;
       this.post.votes = votes.toString();
+      console.log('Date now: ' + this.post.date);
+      console.log(typeof(this.post.date));
       this.postsService.updatePost(this.post);
 
     } else {  // prompt for login
@@ -45,6 +47,9 @@ export class PostVotesComponent implements OnInit, OnDestroy {
     // if user login
     if (this.isAuth && this.isAuth !== undefined) {
       let votes = parseInt(this.post.votes, 10);
+      if (votes === 0) {
+        return;
+      }
       votes--;
       this.post.votes = votes.toString();
       this.postsService.updatePost(this.post);
@@ -53,7 +58,7 @@ export class PostVotesComponent implements OnInit, OnDestroy {
 
     }
   }
-  
+
   ngOnDestroy(): void {
     this.authSub.unsubscribe();
   }

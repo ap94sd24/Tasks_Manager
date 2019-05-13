@@ -124,7 +124,7 @@ exports.deletePost =  (req, res, next) => {
 
 exports.editPost = (req, res, next) => {
   let votes;
-  let origDate;
+  let comments;
   let imagePath = req.body.imagePath;
   if (!!req.file) {
     const url = req.protocol + '://' + req.get('host');
@@ -137,23 +137,27 @@ exports.editPost = (req, res, next) => {
     votes = parseInt(req.body.votes);
   }
 
-  if (typeof(req.body.date) === 'string') {
-    origDate = parseInt(req.body.date);
+  if (typeof(req.body.commentsNumber) === 'number') {
+    comments = req.body.commentsNumber;
+  } else {
+    comments = parseInt(req.body.commentsNumber);
   }
 
   const post = new Post({
     _id: req.body.id,
-    date: origDate,
+    date: req.body.date,
     username: req.body.username,
     title: req.body.title,
     content: req.body.content,
     imagePath: imagePath,
     community: req.body.community,
     votes: votes,
+    commentsNumber: comments,
     link: req.body.link,
     updatedDate: Date.now(),
     creator: req.userData.userId
   });
+  console.log('post: ' + JSON.stringify(post));
   Post.updateOne({
     _id: req.params.id,
     creator: req.userData.userId

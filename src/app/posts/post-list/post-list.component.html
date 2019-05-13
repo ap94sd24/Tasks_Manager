@@ -8,7 +8,6 @@
            <div class="votesView padding col-12 col-md-1 col-lg-1 text-center">
               <app-post-votes
               [post]="post"
-              [id]="post?.id"
               ></app-post-votes>
            </div>
            <div class="col-12 padding col-md-11 col-lg-11"  [routerLink]="['c/' + 'community' + '/comments/' + post?.id + '/title']">
@@ -25,7 +24,9 @@
                     <img class="img-fluid" [src]="post?.imagePath" alt="No image found!">
                  </div>
                  <div class="col-12">
-                    <a mat-button class="customBtn"> <mat-icon>mode_comment</mat-icon> 0 Comment</a>
+                   <app-post-comments
+                   [postId]="post?.id"
+                   ></app-post-comments>
 
                    <a *ngIf="userAuth && userId === post.creator" mat-button class="customBtn">  Edit</a>
                    <a *ngIf="userAuth && userId === post.creator" mat-button class="customBtn">  Delete</a>

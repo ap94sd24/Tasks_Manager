@@ -11,6 +11,7 @@ import { PostDetailsComponent } from './post-details/post-details.component';
 import { CommentsComponent } from './post-details/comments/comments.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { PostVotesComponent } from './post-votes/post-votes.component';
+import { PostCommentsComponent } from './post-comments/post-comments.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { PostVotesComponent } from './post-votes/post-votes.component';
     CommentsComponent,
     PostListComponent,
     PostDetailsComponent,
-    PostVotesComponent
+    PostVotesComponent,
+    PostCommentsComponent
   ],
   imports: [
     CommonModule,

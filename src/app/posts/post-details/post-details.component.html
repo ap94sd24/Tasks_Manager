@@ -4,9 +4,9 @@
       <mat-card class="post">
         <div class="row">
           <div class="votesView padding col-12 col-md-1 col-lg-1 text-center">
-            <mat-icon class="arrowSyle">arrow_drop_up</mat-icon> <br>
-            <span class="fixPosit">0</span> <br>
-            <mat-icon class="arrowSyle">arrow_drop_down</mat-icon>
+            <app-post-votes
+            [post]="post"
+            ></app-post-votes>
           </div>
           <div class="col-12 padding col-md-11 col-lg-11">
             <div class="row">
