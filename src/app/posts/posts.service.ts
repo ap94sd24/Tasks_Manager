@@ -35,6 +35,7 @@ export class PostsService {
             imagePath: post.imagePath,
             community: post.community,
             votes: post.votes,
+            commentsNumber: post.commentsNumber,
             link: post.link,
             creator: post.creator
           };
@@ -117,6 +118,7 @@ export class PostsService {
       imagePath: string;
       community: string;
       votes: number;
+      commentsNumber: number;
       link: string;
       creator: string;
     }>(BACKEND_URL  + postId);

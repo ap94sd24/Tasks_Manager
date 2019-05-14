@@ -56,6 +56,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
             content: postData.content,
             imagePath: postData.imagePath,
             votes: postData.votes.toString(),
+            commentsNumber: postData.commentsNumber.toString(),
             creator: postData.creator
           };
 
@@ -82,6 +83,9 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     } else {
       this.commentsDisplay = num + ' Comment';
     }
+    // update comments on post backend
+    this.post.commentsNumber = num.toString();
+    this.postService.updatePost(this.post);
   }
 
   getLoginUserDetails(login: boolean) {

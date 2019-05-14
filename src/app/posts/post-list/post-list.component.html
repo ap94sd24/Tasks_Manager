@@ -11,27 +11,48 @@
               ></app-post-votes>
            </div>
            <div class="col-12 padding col-md-11 col-lg-11"  [routerLink]="['c/' + 'community' + '/comments/' + post?.id + '/title']">
-               <div class="row">
+               <div class="row" *ngIf="post?.imagePath !== ''" >
                  <div class="col-12">
                    <h5> c/common
                     <span class="postUser"> Posted by u/{{post?.username}}</span> <app-date-posted
                      [datePosted]="post?.date"
                      ></app-date-posted>
                    </h5>
-                   <span>{{post?.title}}</span>
+                   <h5 class="my-3">{{post?.title}}</h5>
+                   <span class="textContent">{{post?.content}}</span>
                  </div>
-                 <div class="col-12 text-center">
+
+                 <div *ngIf="post?.imagePath !== ''" class="col-12 text-center">
                     <img class="img-fluid" [src]="post?.imagePath" alt="No image found!">
                  </div>
                  <div class="col-12">
                    <app-post-comments
-                   [postId]="post?.id"
+                   [post]="post"
                    ></app-post-comments>
 
                    <a *ngIf="userAuth && userId === post.creator" mat-button class="customBtn">  Edit</a>
                    <a *ngIf="userAuth && userId === post.creator" mat-button class="customBtn">  Delete</a>
                  </div>
                </div>
+               <div class="row customheight" *ngIf="post?.imagePath === ''" >
+                <div class="col-12">
+                  <h5> c/common
+                   <span class="postUser"> Posted by u/{{post?.username}}</span> <app-date-posted
+                    [datePosted]="post?.date"
+                    ></app-date-posted>
+                  </h5>
+                  <h5 class="my-3">{{post?.title}}</h5>
+                  <span class="textContent">{{post?.content}}</span>
+                </div>
+                <div class="col-12">
+                  <app-post-comments
+                  [post]="post"
+                  ></app-post-comments>
+
+                  <a *ngIf="userAuth && userId === post.creator" mat-button class="customBtn">  Edit</a>
+                  <a *ngIf="userAuth && userId === post.creator" mat-button class="customBtn">  Delete</a>
+                </div>
+              </div>
            </div>
          </div>
        </mat-card>

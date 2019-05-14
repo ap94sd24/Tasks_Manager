@@ -17,6 +17,7 @@ exports.createPost = (req, res, next) => {
    imagePath: imagePath,
    community: null,
    votes: 0,
+   commentsNumber: 0,
    link: null,
    creator: req.userData.userId
  });

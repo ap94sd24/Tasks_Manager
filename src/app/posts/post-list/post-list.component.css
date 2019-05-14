@@ -3,8 +3,17 @@
   margin-top: 1rem;
 }
 
-.postUser {
+.postUser, .textContent {
   color: gray;
+}
+
+.customheight {
+  height: 20vh;
+  overflow-y: hidden;
+}
+
+.textContent {
+  height: 2vh;
 }
 
 .post:hover {
