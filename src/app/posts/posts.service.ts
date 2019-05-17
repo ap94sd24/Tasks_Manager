@@ -73,6 +73,17 @@ export class PostsService {
       });
   }
 
+  updateCommentsNum(post: Post) {
+    const postData = {
+      id: post.id,
+      num: post.commentsNumber
+    };
+    this.http.put(BACKEND_URL  + 'commentsNumber/' + post.id, postData)
+    .subscribe(response => {
+      // async update on client
+    });
+  }
+
   updatePost(post: Post) {
     let postData: Post | FormData;
     if (typeof(post.imagePath) === 'object') {

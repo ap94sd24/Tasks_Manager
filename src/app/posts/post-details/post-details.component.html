@@ -19,8 +19,11 @@
               <div class="col-12">
                 <h4>{{post?.title}}</h4>
               </div>
-              <div class="col-12 text-center">
+              <div class="col-12 text-center" *ngIf="post?.imagePath !== ''">
                 <img class="img-fluid" [src]="post?.imagePath" alt="No image found!">
+              </div>
+              <div class="col-12" *ngIf="post?.imagePath === ''">
+                <span class="textContent">{{post?.content}}</span>
               </div>
               <div class="col-12 my-3">
                 <a mat-button class="customBtn">
@@ -29,7 +32,9 @@
               </div>
               <ng-container  *ngIf="isAuth">
                 <div class="col-12">
-                  <span>Comment as </span> <a class="userLink">{{post?.username}}</a>
+                  <span>Comment as </span>
+                  <a class="commentStyle" style="color: #00bcd4;" >{{userInfo?.username}}
+                  </a>
                 </div>
                 <div class="col-12" >
                   <form [formGroup]="form" (ngSubmit)="onSubmit()">

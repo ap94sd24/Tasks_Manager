@@ -1,9 +1,14 @@
 <ng-container *ngFor="let comment of comments; let i = index;">
   <div class="row">
     <div class="votesView padding col-12 col-md-1 col-lg-1 text-center">
-      <mat-icon class="arrowSyle">arrow_drop_up</mat-icon> <br>
-      <span class="fixPosit">0</span> <br>
-      <mat-icon class="arrowSyle">arrow_drop_down</mat-icon>
+      <div class="row">
+        <div class="col-12">
+            <mat-icon class="arrowSyle">arrow_drop_up</mat-icon>
+        </div>
+        <div class="col-12">
+            <mat-icon class="arrowSyle">arrow_drop_down</mat-icon>
+        </div>
+      </div>
       <div class="row">
         <div class="offset-3  col-6">
         </div>
@@ -13,7 +18,7 @@
       <div class="row">
         <div class="col-12 mb-3 mx-2">
           <div>
-            <span class="commentUser"> {{comment?.username}} </span>  <app-date-posted [datePosted]="comment?.date"></app-date-posted>
+            <span class="commentUser"> {{comment?.username}} </span>  <span class="mx-2">  0 bean </span> - <app-date-posted [datePosted]="comment?.date"></app-date-posted>
           </div>
         </div>
         <div class="col-12  px-4">

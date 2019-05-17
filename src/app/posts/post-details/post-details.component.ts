@@ -83,9 +83,14 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     } else {
       this.commentsDisplay = num + ' Comment';
     }
-    // update comments on post backend
-    this.post.commentsNumber = num.toString();
-    this.postService.updatePost(this.post);
+    if (this.isAuth) {
+      // update comments on post backend
+      console.log('Enter here!');
+
+      this.post.commentsNumber = num.toString();
+      console.log('num: ' +  this.post.commentsNumber);
+      this.postService.updateCommentsNum(this.post);
+    }
   }
 
   getLoginUserDetails(login: boolean) {

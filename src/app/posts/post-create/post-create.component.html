@@ -35,7 +35,7 @@
              mat-raised-button
              color="primary"
              type="submit"
-             >CREATE POST</button>
+             >{{mode === 'create'? 'POST': 'UPDATE'}}</button>
           </div>
         </form>
       </mat-card>

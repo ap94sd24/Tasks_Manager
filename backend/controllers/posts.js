@@ -123,6 +123,38 @@ exports.deletePost =  (req, res, next) => {
   });
 }
 
+exports.updateCommentsNum = (req, res, next) => {
+  Post.findById(req.params.id).then(post => {
+    post.commentsNumber = req.body.num;
+    Post.updateOne({
+      _id: req.params.id
+    }, post).then(
+      result => {
+        console.log(result);
+        if (result.n > 0) {
+          res.status(200).json({
+            message: 'Update successful!'
+          });
+        } else {
+          res.status(401).json({
+            message: 'Not authorized to edit!'
+          });
+        }
+      })
+      .catch(err => {
+        res.status(500).json({
+          message: 'Could not update post!'
+        });
+      });
+
+  })
+  .catch(err => {
+    res.status(500).json({
+      message: 'No post found!!!'
+    });
+  });
+}
+
 exports.editPost = (req, res, next) => {
   let votes;
   let comments;

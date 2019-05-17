@@ -6,15 +6,19 @@
 .postUser, .textContent {
   color: gray;
 }
+.mobileView {
+  display: none;
+}
 
 .customheight {
-  height: 20vh;
+  height: 15vh;
   overflow-y: hidden;
 }
 
 .textContent {
   height: 2vh;
 }
+
 
 .post:hover {
   cursor: pointer;
@@ -104,12 +108,17 @@ mat-paginator {
   }
 }
 
+
 @media (max-width: 575px) {
   .votesView {
     display: none;
   }
   .padding {
     padding: 0 2%;
+  }
+
+  .mobileView {
+     display: inline-flex;
   }
 }
 
