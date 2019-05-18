@@ -1,48 +1,61 @@
-<mat-spinner  *ngIf="isLoading"></mat-spinner>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
 <div class="container">
   <div class="row">
+    
     <div class="col-12 col-md-12 col-lg-8">
-      <ng-container *ngFor="let post of posts; let i = index;">
-       <mat-card class="post mb-3"  >
-         <div class="row">
-           <div class="votesView padding col-12 col-md-1 col-lg-1 text-center">
-              <app-post-votes
-              [post]="post"
-              ></app-post-votes>
-           </div>
-           <div class="col-12 padding col-md-11 col-lg-11"  [routerLink]="['c/' + 'community' + '/comments/' + post?.id + '/title']">
-               <div class="row" *ngIf="post?.imagePath !== ''" >
-                 <div class="col-12">
-                   <h5> c/common
-                    <span class="postUser"> Posted by u/{{post?.username}}</span> <app-date-posted
-                     [datePosted]="post?.date"
-                     ></app-date-posted>
-                   </h5>
-                   <h5 class="my-3">{{post?.title}}</h5>
-                   <span class="textContent">{{post?.content}}</span>
-                 </div>
+      <div class="row">
+        <div class="col-auto fixPadding">
+          <h5 style="margin-top: 1em;">SORT: </h5>
 
-                 <div *ngIf="post?.imagePath !== ''" class="col-12 text-center">
-                    <img class="img-fluid" [src]="post?.imagePath" alt="No image found!">
-                 </div>
-                 <div class="col-12 mt-3">
-                    <div class="mobileView">
-                        <span>test</span>
-                      </div>
-                   <app-post-comments
-                   [post]="post"
-                   ></app-post-comments>
-
-                   <a *ngIf="userAuth && userId === post.creator" mat-button class="customBtn" [routerLink]="['/edit/' + post.id]" routerLinkActive="router-link-active" >  Edit</a>
-                   <a *ngIf="userAuth && userId === post.creator" mat-button color="warn"   (click)="onDelete(post.id)">  Delete</a>
-                 </div>
-               </div>
-               <div class="row" *ngIf="post?.imagePath === ''" >
-                <div class="col-12">
+        </div>
+        <div class="col-auto">
+          <mat-form-field>
+              <mat-select [(ngModel)]="selected" (ngModelChange)="onSortResult($event)">
+                <mat-option value="new">NEWEST</mat-option>
+                <mat-option value="hot">POPULAR</mat-option>
+                <mat-option value="best">BEST</mat-option>
+              </mat-select>
+            </mat-form-field>
+        </div>
+      </div>
+      <ng-container *ngFor="let post of posts.slice().reverse(); let i = index;">
+        <mat-card class="post mb-3">
+          <div class="row">
+            <div class="votesView padding col-12 col-md-1 col-lg-1 text-center">
+              <app-post-votes [post]="post"></app-post-votes>
+            </div>
+            <div class="col-12 padding col-md-11 col-lg-11">
+              <div class="row" *ngIf="post?.imagePath !== ''">
+                <div class="col-12" [routerLink]="['c/' + 'community' + '/comments/' + post?.id + '/title']">
                   <h5> c/common
-                   <span class="postUser"> Posted by u/{{post?.username}}</span> <app-date-posted
-                    [datePosted]="post?.date"
-                    ></app-date-posted>
+                    <span class="postUser"> Posted by u/{{post?.username}}</span>
+                    <app-date-posted [datePosted]="post?.date"></app-date-posted>
+                  </h5>
+                  <h5 class="my-3">{{post?.title}}</h5>
+                  <span class="textContent">{{post?.content}}</span>
+                </div>
+
+                <div *ngIf="post?.imagePath !== ''" class="col-12 text-center"
+                  [routerLink]="['c/' + 'community' + '/comments/' + post?.id + '/title']">
+                  <img class="img-fluid" [src]="post?.imagePath" alt="No image found!">
+                </div>
+                <div class="col-12 mt-2">
+                  <div class="mobileView">
+                    <app-post-votes [post]="post"></app-post-votes>
+                  </div>
+                  <app-post-comments [post]="post"></app-post-comments>
+
+                  <a *ngIf="userAuth && userId === post.creator" mat-button class="customBtn"
+                    [routerLink]="['/edit/' + post.id]" routerLinkActive="router-link-active"> Edit</a>
+                  <a *ngIf="userAuth && userId === post.creator" mat-button color="warn" (click)="onDelete(post.id)">
+                    Delete</a>
+                </div>
+              </div>
+              <div class="row" *ngIf="post?.imagePath === ''">
+                <div class="col-12" [routerLink]="['c/' + 'community' + '/comments/' + post?.id + '/title']">
+                  <h5> c/common
+                    <span class="postUser"> Posted by u/{{post?.username}}</span>
+                    <app-date-posted [datePosted]="post?.date"></app-date-posted>
                   </h5>
                   <h5 class="my-3">{{post?.title}}</h5>
                   <div class="col-12 customheight">
@@ -51,40 +64,40 @@
                 </div>
                 <div class="col-12 mt-3">
                   <div class="mobileView">
-                    <span>test</span>
+                    <!--Add votes-->
+                    <app-post-votes [post]="post"></app-post-votes>
                   </div>
-                  <app-post-comments
-                  [post]="post"
-                  ></app-post-comments>
-                  <div class="row">
-                    <div class="col-12">
-                      <a *ngIf="userAuth && userId === post.creator" mat-button class="customBtn"[routerLink]="['/edit/' + post.id]" >  Edit</a>
-                      <a *ngIf="userAuth && userId === post.creator" mat-button color="warn" (click)="onDelete(post.id)">  Delete</a>
-                    </div>
-                  </div>
+                  <app-post-comments [post]="post"></app-post-comments>
+
+                  <a *ngIf="userAuth && userId === post.creator" mat-button class="customBtn"
+                    [routerLink]="['/edit/' + post.id]"> Edit</a>
+                  <a *ngIf="userAuth && userId === post.creator" mat-button color="warn" (click)="onDelete(post.id)">
+                    Delete</a>
+
                 </div>
               </div>
-           </div>
-         </div>
-       </mat-card>
+            </div>
+          </div>
+        </mat-card>
       </ng-container>
       <div class="col-12 text-right">
-          <mat-paginator #paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pgSizeOptions" (page)="onChangePage($event)" *ngIf="posts.length > 0" ></mat-paginator>
-          <p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading"> No posts added yet!</p>
-        </div>
+        <mat-paginator #paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pgSizeOptions"
+          (page)="onChangePage($event)" *ngIf="posts.length > 0"></mat-paginator>
+        <p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading"> No posts added yet!</p>
+      </div>
     </div>
     <div class="col-lg-4 desktop-view">
-       <mat-card>
-         <div class="row">
-           <div class="col-12 text-center">
-             <a mat-button class="linkBtn"> About</a>
-             <hr>
-           </div>
-           <div class="col-12 text-center">
+      <mat-card>
+        <div class="row">
+          <div class="col-12 text-center">
+            <a mat-button class="linkBtn"> About</a>
+            <hr>
+          </div>
+          <div class="col-12 text-center">
             <a> © 2019 Caffeenreader. All rights reserved </a>
-           </div>
-         </div>
-       </mat-card>
+          </div>
+        </div>
+      </mat-card>
     </div>
   </div>
 </div>

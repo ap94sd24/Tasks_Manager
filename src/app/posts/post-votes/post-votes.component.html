@@ -1,3 +1,18 @@
-<mat-icon class="arrowSyle" (click)="onAddVote()">arrow_drop_up</mat-icon> <br>
-<span class="fixPosit">{{post?.votes}}</span> <br>
-<mat-icon class="arrowSyle" (click)="onDownVote()">arrow_drop_down</mat-icon>
+<div class="desktopView">
+  <mat-icon class="arrowSyle" (click)="onAddVote()">arrow_drop_up</mat-icon> <br>
+  <span class="fixPosit">{{post?.votes}}</span> <br>
+  <mat-icon class="arrowSyle" (click)="onDownVote()">arrow_drop_down</mat-icon>
+</div>
+<div class="mobileView">
+    <div class="col-3">
+      <mat-icon class="arrowSyle" (click)="onAddVote()">arrow_drop_up</mat-icon>
+       
+    </div>
+    <div class="col-auto text-center">
+        <span class="fixPosit">{{post?.votes}}</span> 
+    </div>
+    <div class="col-3">
+
+      <mat-icon class="arrowSyle" (click)="onDownVote()">arrow_drop_down</mat-icon>
+    </div>
+</div>

@@ -89,7 +89,7 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
 
       this.post.commentsNumber = num.toString();
       console.log('num: ' +  this.post.commentsNumber);
-      this.postService.updateCommentsNum(this.post);
+      this.postService.updateCommentsNumAndVotes(this.post);
     }
   }
 

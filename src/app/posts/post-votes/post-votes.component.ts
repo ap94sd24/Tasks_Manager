@@ -34,12 +34,10 @@ export class PostVotesComponent implements OnInit, OnDestroy {
       let votes = parseInt(this.post.votes, 10);
       votes++;
       this.post.votes = votes.toString();
-      console.log('Date now: ' + this.post.date);
-      console.log(typeof(this.post.date));
-      this.postsService.updatePost(this.post);
+      this.postsService.updateCommentsNumAndVotes(this.post);
 
     } else {  // prompt for login
-
+      alert('Please login to vote!');
     }
   }
 
@@ -52,10 +50,9 @@ export class PostVotesComponent implements OnInit, OnDestroy {
       }
       votes--;
       this.post.votes = votes.toString();
-      this.postsService.updatePost(this.post);
-
+      this.postsService.updateCommentsNumAndVotes(this.post);
     } else {   // prompt for login
-
+      alert('Please login to vote!');
     }
   }
 

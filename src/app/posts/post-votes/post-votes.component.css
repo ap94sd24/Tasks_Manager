@@ -16,5 +16,34 @@
 .fixPosit {
   padding-left: 12%;
 }
+.desktopView {
+   padding: auto;
+}
+
+.mobileView {
+  display: none;
+}
+
+@media (max-width: 575px) {
+  .desktopView {
+    display: none;
+  }
+
+  .mobileView {
+    display: inline-flex;
+  }
+
+  .arrowSyle {
+    font-size:  22px;
+    transform: scale(2);
+    color: gray;
+  }
+  .arrowSyle:hover {
+    font-size:  22px;
+    transform: scale(2);
+    color: #00bcd4;
+    cursor: pointer;
+  }
+}
 
 

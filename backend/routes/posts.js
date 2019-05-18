@@ -13,11 +13,13 @@ router.post("",
 
 router.get("", PostsController.getPosts);
 
+router.get("/search/:query", PostsController.getSearchResults);
+
 router.get("/:id", PostsController.getOnePost);
 
 router.delete("/:id", checkAuth, PostsController.deletePost);
 
-router.put("/commentsNumber/:id", PostsController.updateCommentsNum);
+router.put("/commentsNumberAndVotes/:id", PostsController.updateCommentsNumAndVotes);
 
 router.put("/:id", checkAuth, extractFile, PostsController.editPost);
 

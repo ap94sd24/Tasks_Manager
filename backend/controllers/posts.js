@@ -37,6 +37,34 @@ exports.createPost = (req, res, next) => {
  });
 }
 
+exports.getSearchResults = (req, res, next) => {
+  let words = req.params.query.split(" ");
+  for (var i = 0; i < words.length; i++) {
+    words[i] = "(?=.*\\b" + words[i] + "\\b)";
+  }
+  let newStr = words.join(''); // store reformatted string
+  let re = new RegExp('^' + newStr + '.+');
+
+  Post.find({
+    "title": {
+      $regex: re,
+      $options: 'i'
+    }
+  })
+  .then(documents => {
+    res.status(200).json({
+      message: 'Posts fetched successfully!',
+      posts: documents
+    });
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).json({
+      message: 'Fetching post failed!'
+    });
+  });
+}
+
 exports.getPosts = (req, res, next) => {
   const pageSize = +req.query.pagesize;
   const currPage = req.query.page;
@@ -123,9 +151,10 @@ exports.deletePost =  (req, res, next) => {
   });
 }
 
-exports.updateCommentsNum = (req, res, next) => {
+exports.updateCommentsNumAndVotes = (req, res, next) => {
   Post.findById(req.params.id).then(post => {
     post.commentsNumber = req.body.num;
+    post.votes = parseInt(req.body.votes,10);
     Post.updateOne({
       _id: req.params.id
     }, post).then(

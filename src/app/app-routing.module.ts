@@ -8,6 +8,7 @@ import { PostDetailsComponent } from './posts/post-details/post-details.componen
 
 const routes: Routes = [
   { path: '', component: PostListComponent },
+  { path: 'search/:results', component: PostListComponent},
   { path: 'c/:community/comments/:hash/:title', component: PostDetailsComponent},
   { path: 'create', component: PostCreateComponent, canActivate: [AuthGuard] },
   { path: 'edit/:postId', component: PostCreateComponent, canActivate: [AuthGuard]},

@@ -3,6 +3,19 @@
   margin-top: 1rem;
 }
 
+.fixDisplay {
+  display: inline-block;
+}
+
+mat-form-field {
+  padding: 0;
+  margin: 0;
+}
+
+.fixPadding {
+  padding-right: 0;
+}
+
 .postUser, .textContent {
   color: gray;
 }
@@ -118,7 +131,7 @@ mat-paginator {
   }
 
   .mobileView {
-     display: inline-flex;
+     display: inline-block;
   }
 }
 

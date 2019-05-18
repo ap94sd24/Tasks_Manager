@@ -20,6 +20,35 @@ export class PostsService {
     return this.postsUpdated.asObservable();
   }
 
+  getSearchResults(query: string) {
+    console.log('query: ' + query);
+    this.http.get<{message: string, posts: any}>(BACKEND_URL + 'search/' + query)
+    .pipe(
+      map((postData) => {
+        return postData.posts.map(post => {
+          return {
+            id: post._id,
+            date: post.date,
+            username: post.username,
+            title: post.title,
+            content: post.content,
+            imagePath: post.imagePath,
+            community: post.community,
+            votes: post.votes,
+            commentsNumber: post.commentsNumber,
+            link: post.link,
+            creator: post.creator
+          };
+        });
+      })).subscribe(
+        transformedData => {
+          console.log(transformedData);
+          this.posts = transformedData;
+          this.postsUpdated.next({posts: [...this.posts], postCount: 0});
+        }
+      );
+  }
+
   getPosts(postsPerPage: number, currPage: number) {
     const queryParams = `?pagesize=${postsPerPage}&page=${currPage}`;
      this.http.get<{ message: string, posts: any, maxPosts: number }>( BACKEND_URL + queryParams)
@@ -73,12 +102,13 @@ export class PostsService {
       });
   }
 
-  updateCommentsNum(post: Post) {
+  updateCommentsNumAndVotes(post: Post) {
     const postData = {
       id: post.id,
+      votes: post.votes,
       num: post.commentsNumber
     };
-    this.http.put(BACKEND_URL  + 'commentsNumber/' + post.id, postData)
+    this.http.put(BACKEND_URL  + 'commentsNumberAndVotes/' + post.id, postData)
     .subscribe(response => {
       // async update on client
     });
