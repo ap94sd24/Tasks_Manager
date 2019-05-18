@@ -84,7 +84,7 @@ export class PostListComponent implements OnInit, OnDestroy {
             // to get a value that is either negative, positive, or zero.
             const dateA = Date.parse(a.date);
             const dateB = Date.parse(b.date);
-            return  dateB - dateA;
+            return  dateA - dateB;
           }
         );
       }

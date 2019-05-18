@@ -6,7 +6,7 @@ const Post = require('../models/post');
 exports.createPost = (req, res, next) => {
  let imagePath = '';
  if (!!req.file) {
-   const url = req.protocol + '://' + req.get('host');
+   const url = 'https' + '://' + req.get('host');
    imagePath = url + '/images/' + req.file.filename;
  }
  const post = new Post({
