@@ -16,7 +16,7 @@ import { AuthService } from './../../auth/auth.service';
 
 export class PostListComponent implements OnInit, OnDestroy {
   isLoading = false;
-  selected = 'hot';
+  selected = 'new';
   posts: Post[] = [];
   query: string;
   totalPosts = 0;

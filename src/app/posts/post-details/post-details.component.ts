@@ -85,10 +85,8 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
     }
     if (this.isAuth) {
       // update comments on post backend
-      console.log('Enter here!');
 
       this.post.commentsNumber = num.toString();
-      console.log('num: ' +  this.post.commentsNumber);
       this.postService.updateCommentsNumAndVotes(this.post);
     }
   }
@@ -103,7 +101,6 @@ export class PostDetailsComponent implements OnInit, OnDestroy {
               displayname: userData.displayname,
               email: userData.email
             };
-            console.log('user: ' + JSON.stringify(this.userInfo));
           }
       );
     }

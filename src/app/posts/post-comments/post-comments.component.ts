@@ -20,7 +20,6 @@ export class PostCommentsComponent implements OnChanges {
   }
 
   setComments(num: number) {
-    console.log('num ' + num);
     if (num > 1) {
       this.commentsDisplay = num + ' Comments';
     } else {
