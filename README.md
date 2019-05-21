@@ -3,7 +3,8 @@
  Caffenreader is an online social media and news aggregation platform to facilitate discussions and debates about current events and viral news. It focuses on providing an inclusive environment for intellectual discussions and debates.
 
  Website -  ~~https://mighty-basin-82461.herokuapp.com/~~ (server(s) down for maintainence)
-            --> http://caffeenreader-mean.s3-website-us-east-1.amazonaws.com/
+ 
+            -->  http://caffeenreader-mean.s3-website-us-east-1.amazonaws.com/
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.7.
 
