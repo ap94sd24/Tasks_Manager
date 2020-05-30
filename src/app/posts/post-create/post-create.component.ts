@@ -11,7 +11,7 @@ import { UserInfos } from 'src/app/auth/models/userInfos.model';
 @Component({
   selector: 'app-post-create',
   templateUrl: './post-create.component.html',
-  styleUrls: ['./post-create.component.css']
+  styleUrls: ['./post-create.component.css'],
 })
 export class PostCreateComponent implements OnInit, OnDestroy {
   enteredTitle = '';
@@ -28,108 +28,111 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   private postId: string;
   form: FormGroup;
 
-  constructor(public postsService: PostsService, private authService: AuthService, public route: ActivatedRoute, private router: Router) { }
+  constructor(
+    public postsService: PostsService,
+    private authService: AuthService,
+    public route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-   this.buyerId =  this.authService.getUserId();
-   this.isAuth = this.authService.getIsAuth();
-   this.authSub = this.authService.getAuthStatusListener().subscribe(
-      (authStatus: boolean) => {
+    this.buyerId = this.authService.getUserId();
+    this.isAuth = this.authService.getIsAuth();
+    this.authSub = this.authService
+      .getAuthStatusListener()
+      .subscribe((authStatus: boolean) => {
         this.isAuth = authStatus;
         this.isLoading = false;
-      }
-    );
+      });
     if (this.isAuth) {
-      this.authService.getUserInfos(this.buyerId)
-      .subscribe(
-        userData => {
-          this.userInfos = {
-            username: userData.username,
-            displayname: userData.displayname,
-            email: userData.email
-          };
-        }
-      );
+      this.authService.getUserInfos(this.buyerId).subscribe((userData) => {
+        this.userInfos = {
+          username: userData.username,
+          displayname: userData.displayname,
+          email: userData.email,
+        };
+      });
     }
 
     this.form = new FormGroup({
-      'title': new FormControl(null, {
-        validators: [Validators.required]
+      title: new FormControl(null, {
+        validators: [Validators.required],
       }),
-      'content': new FormControl(null, {
-        validators: [Validators.required]
+      content: new FormControl(null, {
+        validators: [Validators.required],
       }),
-      'image': new FormControl(null, {
-         asyncValidators: [mimeType]
-      })
+      image: new FormControl(null, {
+        asyncValidators: [mimeType],
+      }),
     });
-    this.route.paramMap.subscribe(
-      (paramMap: ParamMap) => {
-        if (paramMap.has('postId')) {
-          this.mode = 'edit';
-          this.postId = paramMap.get('postId');
-          this.isLoading = true;
-          this.postsService.getPost(this.postId).subscribe(postData => {
-            this.isLoading = false;
-            this.post = {
-              id: postData._id,
-              title: postData.title,
-              content: postData.content,
-              imagePath: postData.imagePath,
-              creator: postData.creator
-            };
-            this.form.setValue({
-              'title': this.post.title,
-              'content': this.post.content,
-              'image': this.post.imagePath
-            });
-            this.imagePreview = this.post.imagePath;
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has('postId')) {
+        this.mode = 'edit';
+        this.postId = paramMap.get('postId');
+        this.isLoading = true;
+        this.postsService.getPost(this.postId).subscribe((postData) => {
+          this.isLoading = false;
+          this.post = {
+            id: postData._id,
+            username: postData.username,
+            title: postData.title,
+            content: postData.content,
+            imagePath: postData.imagePath,
+            creator: postData.creator,
+          };
+          this.form.setValue({
+            title: this.post.title,
+            content: this.post.content,
+            image: this.post.imagePath,
           });
-        } else {
-          this.mode = 'create';
-          this.postId = null;
-          this.imagePreview = '';
-        }
-      });
+          this.imagePreview = this.post.imagePath;
+        });
+      } else {
+        this.mode = 'create';
+        this.postId = null;
+        this.imagePreview = '';
+      }
+    });
   }
 
   onImagePicked(event: Event) {
-      const file = (event.target as HTMLInputElement).files[0];
-      this.form.patchValue({image: file});
-      this.form.get('image').updateValueAndValidity();
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imagePreview = reader.result as string;
-        console.log('this.imagePreview: ' + this.imagePreview);
-      };
-      reader.readAsDataURL(file);
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({ image: file });
+    this.form.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = reader.result as string;
+    };
+    reader.readAsDataURL(file);
   }
 
   onSavePost() {
-      if (this.form.invalid) {
-        return;
-      }
-      this.isLoading = true;
-      if (this.mode === 'create') {
-        const post: Post = {
-          id: null,
-          username: this.userInfos.username,
-          title: this.form.value.title,
-          content: this.form.value.content,
-          imagePath: this.form.value.image
-        };
-        this.postsService.addPost(post);
-      } else {
-        const post: Post = {
-          id: this.postId,
-          title: this.form.value.title,
-          content: this.form.value.content,
-          imagePath: this.form.value.image
-        };
-        this.postsService.updatePost(post);
-      }
-      this.form.reset();
-      this.router.navigateByUrl('/');
+    if (this.form.invalid) {
+      return;
+    }
+    this.isLoading = true;
+    if (this.mode === 'create') {
+      const post: Post = {
+        id: null,
+        username: this.userInfos.username,
+        title: this.form.value.title,
+        content: this.form.value.content,
+        imagePath: this.form.value.image,
+      };
+      this.postsService.addPost(post);
+    } else {
+      const post: Post = {
+        id: this.postId,
+        username: this.post.username,
+        title: this.form.value.title,
+        content: this.form.value.content,
+        imagePath: this.form.value.image,
+      };
+
+      this.postsService.updatePost(post);
+    }
+    this.form.reset();
+    this.router.navigateByUrl('/');
   }
 
   ngOnDestroy() {

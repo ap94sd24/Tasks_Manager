@@ -19,7 +19,6 @@ exports.createComment = (req, res, next) => {
     });
   })
   .catch(err => {
-    console.log('err: ' + err);
     res.status(500).json({
       message: 'Creating a comment failed'
     });
@@ -35,7 +34,6 @@ exports.getCommentsForPost = (req, res, next) => {
       });
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json({
         message: 'Fetching commments failed!'
       });

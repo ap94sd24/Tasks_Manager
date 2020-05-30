@@ -34,7 +34,6 @@ export class SignupComponent implements OnInit, OnDestroy {
       email: form.value.email,
       password: form.value.password
     };
-    console.log('user: ' + JSON.stringify(user));
     this.authService.createUser(user);
   }
 

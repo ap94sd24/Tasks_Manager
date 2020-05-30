@@ -21,48 +21,81 @@
 
 <nav class="navbar navbar-expand-lg navbar-light">
   <a class="navbar-brand" [routerLink]="['/']" (click)="onHomeRedirect()">
-    <img src="./assets/images/favicon-orig3.png" class="logo" alt="Logo" height="50" width = "50">Caffeenreader</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <img
+      src="./assets/images/favicon-orig3.png"
+      class="logo"
+      alt="Logo"
+      height="50"
+      width="50"
+    />Caffeenreader</a
+  >
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarTogglerDemo02"
+    aria-controls="navbarTogglerDemo02"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <form class="form-inline ml-auto my-2 my-lg-0"
-    [formGroup]="form"
-     >
-        <div class="input-group mb-3 mycustom">
-            <input
-             type="search"
-             class="form-control text-position"
-             #search
-             (keyup.enter)="onSearch(search.value)"
-             placeholder="Search"
-             formControlName="searchValue"
-             aria-label="Text input with dropdown button">
-            <div class="input-group-append">
-                <a><button mat-button  type="submit" 
-                  (click)="onSearch(search.value)"
-                  ><mat-icon>search</mat-icon></button></a>
-              </div>
-          </div>
-     </form>
+    <form class="form-inline ml-auto my-2 my-lg-0" [formGroup]="form">
+      <div class="input-group mb-3 mycustom">
+        <input
+          type="search"
+          class="form-control text-position"
+          #search
+          (keyup.enter)="onSearch(search.value)"
+          placeholder="Search"
+          formControlName="searchValue"
+          aria-label="Text input with dropdown button"
+        />
+        <div class="input-group-append">
+          <a
+            ><button mat-button type="submit" (click)="onSearch(search.value)">
+              <mat-icon>search</mat-icon>
+            </button></a
+          >
+        </div>
+      </div>
+    </form>
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
       <ng-container *ngIf="isUserAuth">
         <li class="nav-item">
-          <a mat-button  [routerLink]="['/create']" routerLinkActive="mat-accent"> ADD POST</a>
+          <a
+            mat-button
+            [routerLink]="['/create']"
+            routerLinkActive="mat-accent"
+          >
+            ADD POST</a
+          >
         </li>
         <li class="nav-item">
-            <a mat-button class="signoutBtn" (click)="onLogout()">SIGN OUT</a>
+          <a mat-button class="signoutBtn" (click)="onLogout()">SIGN OUT</a>
         </li>
       </ng-container>
       <ng-container *ngIf="!isUserAuth">
         <li class="nav-item">
-            <a mat-button [routerLink]="['/auth/signin']" routerLinkActive="mat-accent"> LOGIN</a>
+          <a
+            mat-button
+            [routerLink]="['/auth/signin']"
+            routerLinkActive="mat-accent"
+          >
+            LOGIN</a
+          >
         </li>
         <li class="nav-item">
-          <a mat-button [routerLink]="['/auth/signup']" routerLinkActive="mat-accent"> SIGNUP</a>
+          <a
+            mat-button
+            [routerLink]="['/auth/signup']"
+            routerLinkActive="mat-accent"
+          >
+            SIGNUP</a
+          >
         </li>
       </ng-container>
     </ul>
   </div>
 </nav>
-
