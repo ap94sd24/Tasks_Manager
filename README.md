@@ -4,7 +4,7 @@
 
  Website -  ~~https://mighty-basin-82461.herokuapp.com/~~ (server(s) down for maintainence)
  
-            -->  http://caffeenreader-mean.s3-website-us-east-1.amazonaws.com/
+            -->  -  http://caffeenreader.s3-website.us-east-2.amazonaws.com/
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.7.
 
